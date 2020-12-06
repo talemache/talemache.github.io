@@ -1,9 +1,12 @@
 ---
 layout: post
-title: You're up and running!
+title: Intro
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
+Hello and welcome to my site! If you want to check out my personal site, please go here: https://starvingdev.blog/
+
+Happy Coding!
+Ryan
 
 ![_config.yml]({{ site.baseurl }}/images/config.png)
 
