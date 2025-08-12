@@ -11,11 +11,6 @@ plugins:
   - jekyll-remote-theme
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-paginate
-
-# Pagination
-paginate: 10
-paginate_path: "/page:num/"
 
 # Markdown settings
 markdown: kramdown
@@ -38,4 +33,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-  - vendor 
+  - vendor
