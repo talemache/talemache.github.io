@@ -1,14 +1,27 @@
-<!-- Retro Pro head additions -->
+<!-- ===== Retro Pro: Head Additions ===== -->
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Site CSS (remove this line if you renamed to assets/main.scss so Minima loads it) -->
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
 <!-- Favicons -->
 <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{{ '/assets/img/og-image.png' | relative_url }}">
 
-<!-- Social preview -->
-<meta property="og:title" content="{{ page.title | default: site.title }}">
-<meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
-<meta property="og:image" content="{{ site.url }}{{ '/assets/img/og-image.png' | relative_url }}">
+<!-- PWA/Theme color (nice mobile address-bar tint) -->
+<meta name="theme-color" content="#0f9d8f">
+
+<!-- Canonical -->
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- Social preview:
+     Minima already uses jekyll-seo-tag, which sets most meta tags.
+     We only force the image here so shares look great. -->
+{% assign og_image = '/assets/img/og-image.png' | relative_url %}
+<meta property="og:image" content="{{ site.url | default: site.github.url }}{{ og_image }}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url | default: site.github.url }}{{ og_image }}">
