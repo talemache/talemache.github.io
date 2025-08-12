@@ -1,31 +1,61 @@
-title: Levelyn
-description: "Music • Growth • Tech"
-url: "https://levelyn.blog"
-baseurl: ""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>{% if page.title %}{{ page.title | escape }} | {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>{% if page.title %}{{ page.title | escape }} | {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  
+  <!-- SEO -->
+  {% seo %}
+  
+  <!-- Feed -->
+  {% feed_meta %}
+</head>
 
-# Use no theme - we'll do custom layouts
-theme: null
+<body>
+  <header class="site-header">
+    <div class="wrapper">
+      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      
+      <nav class="site-nav">
+        <a class="page-link" href="{{ '/about/' | relative_url }}">About</a>
+      </nav>
+    </div>
+  </header>
 
-# Plugins
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+  <main class="page-content">
+    {{ content }}
+  </main>
 
-# Markdown settings
-markdown: kramdown
-kramdown:
-  input: GFM
-
-# Social links (for footer)
-social_links:
-  github: "https://github.com/talemache"
-  linkedin: "https://www.linkedin.com/in/ryan-l-895b3b126/"
-
-# Build settings
-exclude:
-  - README.md
-  - README-RETRO.md
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
+  <footer class="site-footer">
+    <div class="footer-content">
+      <h3 class="footer-heading">{{ site.title }}</h3>
+      
+      <div class="contact-info">
+        <p>{{ site.description }}</p>
+        <p>Contact: <a href="mailto:your-email@domain.com">your-email@domain.com</a></p>
+      </div>
+      
+      <div class="social-links">
+        <a href="{{ site.social_links.github }}" target="_blank" rel="noopener" title="GitHub">GitHub</a>
+        <a href="{{ site.social_links.linkedin }}" target="_blank" rel="noopener" title="LinkedIn">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

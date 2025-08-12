@@ -2,45 +2,29 @@
 layout: default
 ---
 
-<!-- Hero section -->
-<section class="hero">
-  <div class="wrapper">
-    <h1>{{ site.title }}</h1>
-    <p>{{ site.description }}</p>
-  </div>
-</section>
-
 <div class="wrapper">
   {% if site.posts and site.posts.size > 0 %}
-  <section class="post-grid" aria-label="All posts">
+  <ul class="post-list">
     {% for post in site.posts %}
-    <article class="post-card">
-      <a class="post-card__link" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
-        <h2 class="post-card__title">{{ post.title | escape }}</h2>
-      </a>
-
-      <p class="post-card__meta">
-        <time datetime="{{ post.date | date_to_xmlschema }}">
-          {{ post.date | date: "%B %-d, %Y" }}
-        </time>
-      </p>
-
+    <li class="post-item">
+      <h2 class="post-title">
+        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      </h2>
+      
+      <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
+      
       {% if post.excerpt %}
-      <p class="post-card__excerpt">
-        {{ post.excerpt | strip_html | truncate: 180 }}
-      </p>
+      <div class="post-excerpt">
+        {{ post.excerpt }}
+      </div>
       {% endif %}
-
-      <p class="post-card__cta">
-        <a class="btn btn--text" href="{{ post.url | relative_url }}">Read more →</a>
-      </p>
-    </article>
+    </li>
     {% endfor %}
-  </section>
+  </ul>
   {% else %}
   <div class="no-posts">
     <h2>No posts yet</h2>
-    <p>Create your first post in the <code>_posts</code> directory!</p>
+    <p>Create your first post in the <code>_posts</code> directory to get started.</p>
   </div>
   {% endif %}
 </div>
