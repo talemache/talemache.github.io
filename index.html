@@ -3,31 +3,44 @@ layout: default
 title: Home
 ---
 
-<section class="hero">
-  <h1>{{ site.title | default: "Levelyn" }}</h1>
-  <p>{{ site.description | default: "Music • Growth • Tech — in a clean retro style." }}</p>
-  <a class="btn" href="{{ '/about/' | relative_url }}">About</a>
+{%- if paginator and paginator.page > 1 -%}
+  <!-- No hero on older pages -->
+{%- else -%}
+<section class="hero hero--compact">
+  <h1 class="site-headline">{{ site.title | default: "Levelyn" }}</h1>
+  <div class="hero-actions">
+    <a class="btn" href="{{ '/about/' | relative_url }}">About</a>
+    <a class="btn" href="{{ '/archive/' | relative_url }}">Archive</a>
+  </div>
 </section>
+{%- endif -%}
 
 <ul class="post-grid">
-  {% if paginator %}
-    {% assign posts_list = paginator.posts %}
-  {% else %}
-    {% assign posts_list = site.posts %}
-  {% endif %}
+  {% assign posts_list = paginator.posts | default: site.posts %}
   {% for post in posts_list %}
     <li class="post-card">
+      {% if post.image %}
+        <a class="thumb" href="{{ post.url | relative_url }}" aria-label="{{ post.title }}"
+           style="background-image:url('{{ post.image | relative_url }}')"></a>
+      {% endif %}
       <div class="meta">{{ post.date | date: "%b %d, %Y" }}</div>
       <a class="post-title" href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
+      {% if post.tags and post.tags.size > 0 %}
+        <div class="tags">
+          {% for t in post.tags limit:2 %}
+            <span class="chip">{{ t }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
       {% if post.excerpt %}
-        <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+        <p>{{ post.excerpt | strip_html | truncate: 140 }}</p>
       {% endif %}
     </li>
   {% endfor %}
 </ul>
 
 {% if paginator %}
-<nav class="pagination" role="navigation">
+<nav class="pagination" role="navigation" aria-label="Pagination">
   {% if paginator.previous_page %}
     <a class="btn" href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
   {% endif %}
