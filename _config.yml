@@ -4,7 +4,7 @@ url: "https://levelyn.blog"
 baseurl: ""
 
 # Theme
-theme: minima
+theme: null
 
 # Top navigation
 header_pages:
@@ -13,8 +13,10 @@ header_pages:
 
 # Plugins
 plugins:
+  - jekyll-remote-theme
   - jekyll-feed
   - jekyll-seo-tag
+remote_theme: jekyll/minima
 
 # Markdown settings
 markdown: kramdown
