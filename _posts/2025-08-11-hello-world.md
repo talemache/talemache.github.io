@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "Hello, world"
-date: 2025-08-11 09:00:00 -0400
-tags: [intro]
+title: "Welcome to Levelyn"
+date: 2025-08-11 12:00:00 -0400
+tags: [intro, music, tech]
+excerpt: "Starting a new blog."
 ---
 
-First post, really don't know what to write about. I want to make this a daily thing and see where it goes.
+First post! Not sure what to write about but want to do this daily. Let's see where this goes!

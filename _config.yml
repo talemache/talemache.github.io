@@ -1,42 +1,37 @@
 title: Levelyn
-description: ""
+description: "Music • Growth • Tech"
 url: "https://levelyn.blog"
 baseurl: ""
 
 # Theme
-theme: null
-
-# # Top navigation
-# header_pages:
-#   - index.html
-#   - about.md
+remote_theme: jekyll/minima
 
 # Plugins
 plugins:
   - jekyll-remote-theme
   - jekyll-feed
   - jekyll-seo-tag
-remote_theme: jekyll/minima
+  - jekyll-paginate
+
+# Pagination
+paginate: 10
+paginate_path: "/page:num/"
 
 # Markdown settings
 markdown: kramdown
 kramdown:
   input: GFM
 
+# Minima theme settings
 minima:
-  nav_pages:       # v3 replaces `header_pages`
-    - index.html
-    - about.md
+  skin: dark
   social_links:
-    - title: GitHub
-      icon: github
-      url: "https://github.com/talemache"
-    - title: LinkedIn
-      icon: linkedin
-      url: "https://www.linkedin.com/in/ryan-l-895b3b126/"
+    - platform: github
+      user_url: "https://github.com/talemache"
+    - platform: linkedin
+      user_url: "https://www.linkedin.com/in/ryan-l-895b3b126/"
 
-
-# Tidy up build
+# Build settings
 exclude:
   - README.md
   - README-RETRO.md

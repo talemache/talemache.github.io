@@ -2,72 +2,71 @@
 layout: default
 ---
 
-{%- comment -%}
-Hero (no big headline). Only show on page 1.
-{%- endcomment -%}
-{%- if paginator and paginator.page > 1 -%}
-{%- else -%}
-<section class="hero hero--compact">
-  <div class="hero-actions">
-    <a class="btn" href="{{ '/about/' | relative_url }}">About</a>
-    <a class="btn" href="{{ '/archive/' | relative_url }}">Archive</a>
+<!-- Hero section (only on page 1) -->
+{% if paginator.page == 1 or paginator.page == nil %}
+<section class="hero">
+  <div class="wrapper">
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
+    <div class="hero-actions">
+      <a class="btn" href="{{ '/about/' | relative_url }}">About</a>
+      <a class="btn" href="{{ '/archive/' | relative_url }}">Archive</a>
+    </div>
   </div>
 </section>
-{%- endif -%}
+{% endif %}
 
 <main id="content" class="home">
-  {%- assign posts_to_show = paginator.posts | default: site.posts -%}
+  <div class="wrapper">
+    {% assign posts_to_show = paginator.posts | default: site.posts %}
 
-  {%- if posts_to_show and posts_to_show.size > 0 -%}
-  <section class="post-grid" aria-label="Recent posts">
-    {%- for post in posts_to_show -%}
-    <article class="post-card">
-      <a class="post-card__link" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
-        <h2 class="post-card__title">{{ post.title | escape }}</h2>
-      </a>
+    {% if posts_to_show and posts_to_show.size > 0 %}
+    <section class="post-grid" aria-label="Recent posts">
+      {% for post in posts_to_show %}
+      <article class="post-card">
+        <a class="post-card__link" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
+          <h2 class="post-card__title">{{ post.title | escape }}</h2>
+        </a>
 
-      <p class="post-card__meta">
-        <time datetime="{{ post.date | date_to_xmlschema }}">
-          {{ post.date | date: "%B %-d, %Y" }}
-        </time>
-      </p>
+        <p class="post-card__meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%B %-d, %Y" }}
+          </time>
+        </p>
 
-      {%- if post.excerpt -%}
-      <p class="post-card__excerpt">
-        {{ post.excerpt | strip_html | truncate: 180 }}
-      </p>
-      {%- endif -%}
+        {% if post.excerpt %}
+        <p class="post-card__excerpt">
+          {{ post.excerpt | strip_html | truncate: 180 }}
+        </p>
+        {% endif %}
 
-      <p class="post-card__cta">
-        <a class="btn btn--text" href="{{ post.url | relative_url }}">Read more →</a>
-      </p>
+        <p class="post-card__cta">
+          <a class="btn btn--text" href="{{ post.url | relative_url }}">Read more →</a>
+        </p>
+      </article>
+      {% endfor %}
+    </section>
+    {% else %}
+    <p>No posts yet. Create your first post in the <code>_posts</code> directory!</p>
+    {% endif %}
 
-      {%- comment -%}
-      Tags removed on purpose to hide "Music · Growth · Tech".
-      If you ever want them back, restore a loop over post.tags here.
-      {%- endcomment -%}
-    </article>
-    {%- endfor -%}
-  </section>
-  {%- else -%}
-  <p>No posts yet.</p>
-  {%- endif -%}
+    <!-- Pagination -->
+    {% if paginator.total_pages > 1 %}
+    <nav class="pagination" role="navigation" aria-label="Pagination">
+      {% if paginator.previous_page %}
+        <a class="pagination__prev" href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
+      {% else %}
+        <span class="pagination__prev is-disabled">&larr; Newer</span>
+      {% endif %}
 
-  {%- if paginator and paginator.total_pages > 1 -%}
-  <nav class="pagination" role="navigation" aria-label="Pagination">
-    {%- if paginator.previous_page -%}
-      <a class="pagination__prev" href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
-    {%- else -%}
-      <span class="pagination__prev is-disabled">&larr; Newer</span>
-    {%- endif -%}
+      <span class="pagination__page">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
 
-    <span class="pagination__page">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-
-    {%- if paginator.next_page -%}
-      <a class="pagination__next" href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>
-    {%- else -%}
-      <span class="pagination__next is-disabled">Older &rarr;</span>
-    {%- endif -%}
-  </nav>
-  {%- endif -%}
+      {% if paginator.next_page %}
+        <a class="pagination__next" href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>
+      {% else %}
+        <span class="pagination__next is-disabled">Older &rarr;</span>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </div>
 </main>

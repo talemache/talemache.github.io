@@ -1,0 +1,232 @@
+---
+---
+
+@import "minima";
+
+/* Custom styling for Levelyn blog */
+
+:root {
+  --primary-color: #0f9d8f;
+  --background-color: #0a0a0a;
+  --text-color: #e0e0e0;
+  --card-background: #1a1a1a;
+  --border-color: #333;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Header styling */
+.site-header {
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--card-background);
+}
+
+.site-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none !important;
+}
+
+.site-nav .page-link {
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.site-nav .page-link:hover {
+  color: var(--primary-color);
+}
+
+/* Hero section */
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #0f1419 0%, #1a1a1a 100%);
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  margin-bottom: 2rem;
+}
+
+.hero-actions .btn {
+  display: inline-block;
+  margin: 0 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.hero-actions .btn:hover {
+  background-color: #0d8576;
+  transform: translateY(-2px);
+}
+
+/* Post grid */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.post-card {
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.post-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(15, 157, 143, 0.1);
+}
+
+.post-card__title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.post-card__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-card__meta {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.post-card__excerpt {
+  color: #b0b0b0;
+  margin-bottom: 1rem;
+}
+
+.post-card__cta .btn {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.post-card__cta .btn:hover {
+  color: #0d8576;
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--card-background);
+  border-top: 1px solid var(--border-color);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.social-links a {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--primary-color);
+}
+
+/* Archive page */
+.archive-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.archive-list h3 {
+  font-family: 'Syne', sans-serif;
+  color: var(--primary-color);
+  margin-top: 2rem;
+}
+
+.archive-list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.archive-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.archive-list li:last-child {
+  border-bottom: none;
+}
+
+.archive-list a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.archive-list a:hover {
+  color: var(--primary-color);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .post-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-actions .btn {
+    display: block;
+    margin: 0.5rem 0;
+  }
+}
+
+/* Code blocks */
+code, pre {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+pre {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: #0d8576;
+}
