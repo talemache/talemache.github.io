@@ -1,23 +1,22 @@
-title: Ryan's Blog
-email: your.email@example.com
-description: >-
-  Thoughts on data, legal tech, fairness, and life.
-baseurl: "" # the subpath of your site, e.g. /blog
+title: Levelyn
+description: Music • Growth • Tech
 url: "https://levelyn.blog"
+baseurl: ""
+
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-paginate
 
-author:
-  name: Ryan
-  url: https://<your-username>.github.io
+paginate: 10
+paginate_path: "/page:num/"
 
-# Navigation links (for minima)
-header_pages:
-  - about.md
-
-# Build settings
-markdown: kramdown
-kramdown:
-  input: GFM
+minima:
+  social_links:
+    - platform: github
+      user_url: https://github.com/<your-username>
+    - platform: linkedin
+      user_url: https://www.linkedin.com/in/<your-handle>/
+    - platform: x
+      user_url: https://x.com/<your-handle>
