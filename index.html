@@ -7,7 +7,7 @@ title: Home
   <!-- No hero on older pages -->
 {%- else -%}
 <section class="hero hero--compact">
-  <h1 class="site-headline">{{ site.title | default: "Levelyn" }}</h1>
+  <!-- <h1 class="site-headline">{{ site.title | default: "Posts" }}</h1> -->
   <div class="hero-actions">
     <a class="btn" href="{{ '/about/' | relative_url }}">About</a>
     <a class="btn" href="{{ '/archive/' | relative_url }}">Archive</a>
@@ -25,13 +25,13 @@ title: Home
       {% endif %}
       <div class="meta">{{ post.date | date: "%b %d, %Y" }}</div>
       <a class="post-title" href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
-      {% if post.tags and post.tags.size > 0 %}
+      <!-- {% if post.tags and post.tags.size > 0 %}
         <div class="tags">
           {% for t in post.tags limit:2 %}
             <span class="chip">{{ t }}</span>
           {% endfor %}
         </div>
-      {% endif %}
+      {% endif %} -->
       {% if post.excerpt %}
         <p>{{ post.excerpt | strip_html | truncate: 140 }}</p>
       {% endif %}
