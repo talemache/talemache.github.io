@@ -139,3 +139,71 @@ pre, code {
 
 /* Pagination */
 .pagination { margin-top: 1rem; display: flex; gap: .6rem; }
+/* === Homepage Tweaks === */
+
+/* Hero section spacing */
+.hero.hero--compact {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.hero.hero--compact .hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero.hero--compact .btn {
+  background-color: #000;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.hero.hero--compact .btn:hover {
+  background-color: #333;
+}
+
+/* Post grid spacing */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.post-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.2rem;
+  background: #fff;
+  transition: box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.post-card__title {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.post-card__excerpt {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* Remove site headline if any remnants remain */
+.site-headline {
+  display: none !important;
+}
+
+/* Remove default footer (backup to empty include) */
+footer.site-footer {
+  display: none !important;
+}
+
