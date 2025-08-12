@@ -1,0 +1,23 @@
+title: Ryan's Blog
+email: your.email@example.com
+description: >-
+  Thoughts on data, legal tech, fairness, and life.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://<your-username>.github.io"
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+author:
+  name: Ryan
+  url: https://<your-username>.github.io
+
+# Navigation links (for minima)
+header_pages:
+  - about.md
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
