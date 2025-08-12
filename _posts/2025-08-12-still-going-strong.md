@@ -7,4 +7,4 @@ excerpt: "Need to sleep."
 ---
 
 I ended up working well into the next day on this blog setup, and I have to get up for work in a couple of hours. It's been a while since I was this excited to do something that involved computers after working hours.
-Hopefully I can keep this momentum going because this was fun. More to come later today after work.
+Hopefully I can keep this momentum going!
