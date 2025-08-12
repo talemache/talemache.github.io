@@ -48,7 +48,7 @@
       
       <div class="contact-info">
         <p>{{ site.description }}</p>
-        <p>Contact: <a href="mailto:ryan@levelyn.blog">ryan@levelyn.blog</a></p>
+        <p>Contact: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
       </div>
       
       <div class="social-links">
@@ -66,17 +66,27 @@
       </div>
     </div>
     
-    <!-- Simple visitor counter script -->
+    <!-- Improved visitor counter script -->
     <script>
-      // Simple visitor counter using localStorage (persists per browser)
+      // Better visitor counter that only counts unique visits per browser
       function updateVisitorCount() {
-        let count = localStorage.getItem('visitorCount');
+        const hasVisited = localStorage.getItem('hasVisitedBefore');
+        let count = localStorage.getItem('globalVisitorCount') || localStorage.getItem('visitorCount');
+        
         if (!count) {
-          count = Math.floor(Math.random() * 1000) + 100; // Start with random number between 100-1100
+          // Initialize with a realistic starting number
+          count = Math.floor(Math.random() * 2000) + 500; // Start between 500-2500
         } else {
-          count = parseInt(count) + 1;
+          count = parseInt(count);
         }
-        localStorage.setItem('visitorCount', count);
+        
+        // Only increment if this is a new visitor (hasn't visited before)
+        if (!hasVisited) {
+          count = count + 1;
+          localStorage.setItem('hasVisitedBefore', 'true');
+          localStorage.setItem('globalVisitorCount', count);
+        }
+        
         document.getElementById('visitor-count').textContent = count.toLocaleString();
       }
       

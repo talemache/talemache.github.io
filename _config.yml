@@ -3,6 +3,9 @@ description: "Music • Growth • Tech"
 url: "https://levelyn.blog"
 baseurl: ""
 
+# Contact info
+email: "ryan@levelyn.blog"
+
 # Use no theme - we'll do custom layouts
 theme: null
 
