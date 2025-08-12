@@ -2,71 +2,45 @@
 layout: default
 ---
 
-<!-- Hero section (only on page 1) -->
-{% if paginator.page == 1 or paginator.page == nil %}
+<!-- Hero section -->
 <section class="hero">
   <div class="wrapper">
     <h1>{{ site.title }}</h1>
     <p>{{ site.description }}</p>
-    <div class="hero-actions">
-      <a class="btn" href="{{ '/about/' | relative_url }}">About</a>
-      <a class="btn" href="{{ '/archive/' | relative_url }}">Archive</a>
-    </div>
   </div>
 </section>
-{% endif %}
 
-<main id="content" class="home">
-  <div class="wrapper">
-    {% assign posts_to_show = paginator.posts | default: site.posts %}
+<div class="wrapper">
+  {% if site.posts and site.posts.size > 0 %}
+  <section class="post-grid" aria-label="All posts">
+    {% for post in site.posts %}
+    <article class="post-card">
+      <a class="post-card__link" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
+        <h2 class="post-card__title">{{ post.title | escape }}</h2>
+      </a>
 
-    {% if posts_to_show and posts_to_show.size > 0 %}
-    <section class="post-grid" aria-label="Recent posts">
-      {% for post in posts_to_show %}
-      <article class="post-card">
-        <a class="post-card__link" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
-          <h2 class="post-card__title">{{ post.title | escape }}</h2>
-        </a>
+      <p class="post-card__meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%B %-d, %Y" }}
+        </time>
+      </p>
 
-        <p class="post-card__meta">
-          <time datetime="{{ post.date | date_to_xmlschema }}">
-            {{ post.date | date: "%B %-d, %Y" }}
-          </time>
-        </p>
-
-        {% if post.excerpt %}
-        <p class="post-card__excerpt">
-          {{ post.excerpt | strip_html | truncate: 180 }}
-        </p>
-        {% endif %}
-
-        <p class="post-card__cta">
-          <a class="btn btn--text" href="{{ post.url | relative_url }}">Read more →</a>
-        </p>
-      </article>
-      {% endfor %}
-    </section>
-    {% else %}
-    <p>No posts yet. Create your first post in the <code>_posts</code> directory!</p>
-    {% endif %}
-
-    <!-- Pagination -->
-    {% if paginator.total_pages > 1 %}
-    <nav class="pagination" role="navigation" aria-label="Pagination">
-      {% if paginator.previous_page %}
-        <a class="pagination__prev" href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
-      {% else %}
-        <span class="pagination__prev is-disabled">&larr; Newer</span>
+      {% if post.excerpt %}
+      <p class="post-card__excerpt">
+        {{ post.excerpt | strip_html | truncate: 180 }}
+      </p>
       {% endif %}
 
-      <span class="pagination__page">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-
-      {% if paginator.next_page %}
-        <a class="pagination__next" href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>
-      {% else %}
-        <span class="pagination__next is-disabled">Older &rarr;</span>
-      {% endif %}
-    </nav>
-    {% endif %}
+      <p class="post-card__cta">
+        <a class="btn btn--text" href="{{ post.url | relative_url }}">Read more →</a>
+      </p>
+    </article>
+    {% endfor %}
+  </section>
+  {% else %}
+  <div class="no-posts">
+    <h2>No posts yet</h2>
+    <p>Create your first post in the <code>_posts</code> directory!</p>
   </div>
-</main>
+  {% endif %}
+</div>

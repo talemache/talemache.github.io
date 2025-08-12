@@ -194,21 +194,42 @@ body {
 .social-media-list {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin: 1rem 0;
-  list-style: none;
-  padding: 0;
+  gap: 2rem;
+  margin: 1rem 0 0 0;
 }
 
 .social-media-list a {
   color: var(--text-color);
-  font-size: 1.2rem;
+  font-size: 1rem;
   transition: color 0.3s ease;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .social-media-list a:hover {
   color: var(--primary-color);
+}
+
+/* No posts message */
+.no-posts {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--card-background);
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.no-posts h2 {
+  font-family: 'Syne', sans-serif;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.no-posts code {
+  background-color: var(--background-color);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 /* Archive page */
