@@ -1,0 +1,14 @@
+<!-- Retro Pro head additions -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Favicons -->
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ '/assets/img/og-image.png' | relative_url }}">
+
+<!-- Social preview -->
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+<meta property="og:image" content="{{ site.url }}{{ '/assets/img/og-image.png' | relative_url }}">
+<meta name="twitter:card" content="summary_large_image">

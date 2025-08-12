@@ -1,0 +1,39 @@
+
+---
+layout: default
+title: Home
+---
+
+<section class="hero">
+  <h1>{{ site.title | default: "Levelyn" }}</h1>
+  <p>{{ site.description | default: "Music • Growth • Tech — in a clean retro style." }}</p>
+  <a class="btn" href="{{ '/about/' | relative_url }}">About</a>
+</section>
+
+<ul class="post-grid">
+  {% if paginator %}
+    {% assign posts_list = paginator.posts %}
+  {% else %}
+    {% assign posts_list = site.posts %}
+  {% endif %}
+  {% for post in posts_list %}
+    <li class="post-card">
+      <div class="meta">{{ post.date | date: "%b %d, %Y" }}</div>
+      <a class="post-title" href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
+      {% if post.excerpt %}
+        <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% if paginator %}
+<nav class="pagination" role="navigation">
+  {% if paginator.previous_page %}
+    <a class="btn" href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
+  {% endif %}
+  {% if paginator.next_page %}
+    <a class="btn" href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>
+  {% endif %}
+</nav>
+{% endif %}
