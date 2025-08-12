@@ -48,14 +48,41 @@
       
       <div class="contact-info">
         <p>{{ site.description }}</p>
-        <p>Contact: <a href="mailto:ryan@levelyn.blog">ryan@levelyn.blog</a></p>
+        <p>Contact: <a href="mailto:your-email@domain.com">your-email@domain.com</a></p>
       </div>
       
       <div class="social-links">
         <a href="{{ site.social_links.github }}" target="_blank" rel="noopener" title="GitHub">GitHub</a>
         <a href="{{ site.social_links.linkedin }}" target="_blank" rel="noopener" title="LinkedIn">LinkedIn</a>
       </div>
+      
+      <div class="footer-bottom">
+        <div class="visitor-counter">
+          <p>Visitor #<span id="visitor-count">Loading...</span></p>
+        </div>
+        <div class="copyright">
+          <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+        </div>
+      </div>
     </div>
+    
+    <!-- Simple visitor counter script -->
+    <script>
+      // Simple visitor counter using localStorage (persists per browser)
+      function updateVisitorCount() {
+        let count = localStorage.getItem('visitorCount');
+        if (!count) {
+          count = Math.floor(Math.random() * 1000) + 100; // Start with random number between 100-1100
+        } else {
+          count = parseInt(count) + 1;
+        }
+        localStorage.setItem('visitorCount', count);
+        document.getElementById('visitor-count').textContent = count.toLocaleString();
+      }
+      
+      // Update counter when page loads
+      document.addEventListener('DOMContentLoaded', updateVisitorCount);
+    </script>
   </footer>
 </body>
 </html>

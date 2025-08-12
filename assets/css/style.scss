@@ -317,6 +317,26 @@ a:hover {
   color: #333;
 }
 
+/* Footer bottom section */
+.footer-bottom {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.visitor-counter {
+  font-weight: 500;
+}
+
+.copyright {
+  text-align: right;
+}
+
 /* No posts message */
 .no-posts {
   text-align: center;
@@ -388,16 +408,13 @@ a:hover {
     padding-bottom: 40px;
   }
   
-  code {
-    font-size: 14px;
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
   }
   
-  pre {
-    font-size: 14px;
-    padding: 15px;
-  }
-  
-  pre code {
-    font-size: 14px;
+  .copyright {
+    text-align: center;
   }
 }
