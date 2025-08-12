@@ -3,7 +3,7 @@ email: your.email@example.com
 description: >-
   Thoughts on data, legal tech, fairness, and life.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://<your-username>.github.io"
+url: "https://levelyn.blog"
 theme: minima
 plugins:
   - jekyll-feed
