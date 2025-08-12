@@ -6,4 +6,4 @@ tags: [intro, music, tech]
 excerpt: "Starting a new blog."
 ---
 
-First post! Not sure what to write about but want to do this daily. Let's see where this goes!
+First post! Not sure what to write about but want to do this daily. Let's see where this goes.
