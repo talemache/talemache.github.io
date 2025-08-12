@@ -6,10 +6,10 @@ baseurl: ""
 # Theme
 theme: null
 
-# Top navigation
-header_pages:
-  - index.html
-  - about.md
+# # Top navigation
+# header_pages:
+#   - index.html
+#   - about.md
 
 # Plugins
 plugins:
