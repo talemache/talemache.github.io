@@ -135,8 +135,7 @@ pre, code {
 }
 
 /* Footer */
-.site-footer { color: var(--muted); border-top: 1px solid var(--border); }
-.footer-col-wrapper { color: inherit; }
+.site-footer .footer-col-wrapper .footer-col:first-child { display: none; }
 
 /* Pagination */
 .pagination { margin-top: 1rem; display: flex; gap: .6rem; }

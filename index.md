@@ -1,4 +1,4 @@
 ---
 layout: home
-title: Levelyn
+title: Posts
 ---
