@@ -7,7 +7,7 @@ baseurl: ""
 email: "ryan@levelyn.blog"
 
 # Use no theme - we'll do custom layouts
-theme: null
+theme: no-style-please
 
 # Plugins
 plugins:
