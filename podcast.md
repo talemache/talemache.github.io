@@ -9,7 +9,7 @@ permalink: /podcast/
 This is my attempt at working through life, creativity, and everything in between. Listen to it here, or wherever you listen to your podcasts.
 
 <div class="podcast-intro">
-  <p>An ongoing conversation about making sense of it all, from music and tech to the beautiful mess of being human. No grand plan, no perfect answers — just curiosity and the willingness to figure things out in public.</p>
+  <p>Ryan Wears a Hat</p>
 </div>
 
 ## Recent Episodes
