@@ -1,6 +1,6 @@
 ---
 layout: page
-title: podcast
+title: 
 permalink: /podcast/
 ---
 
