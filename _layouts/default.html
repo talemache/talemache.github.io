@@ -1,14 +1,6 @@
+<!-- _layouts/default.html -->
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title>{% if page.title %}{{ page.title | escape }} | {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +12,14 @@
   <!-- CSS -->
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+  
   <!-- SEO -->
   {% seo %}
   
@@ -29,11 +29,18 @@
 
 <body>
   <header class="site-header">
-    <div class="wrapper">
+    <div class="header-wrapper">
       <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
       
       <nav class="site-nav">
-        <a class="page-link" href="{{ '/about/' | relative_url }}">About</a>
+        <ul class="nav-links">
+          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+          <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
+        </ul>
+        
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <span id="theme-icon">🌙</span>
+        </button>
       </nav>
     </div>
   </header>
@@ -65,34 +72,188 @@
         </div>
       </div>
     </div>
+  </footer>
+
+  <!-- Theme toggle script -->
+  <script>
+    // Theme management
+    function toggleTheme() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      const currentTheme = html.getAttribute('data-theme');
+      
+      if (currentTheme === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
     
-    <!-- Improved visitor counter script -->
-    <script>
-      // Better visitor counter that only counts unique visits per browser
-      function updateVisitorCount() {
-        const hasVisited = localStorage.getItem('hasVisitedBefore');
-        let count = localStorage.getItem('globalVisitorCount') || localStorage.getItem('visitorCount');
-        
-        if (!count) {
-          // Initialize with a realistic starting number
-          count = Math.floor(Math.random() * 2000) + 500; // Start between 500-2500
-        } else {
-          count = parseInt(count);
-        }
-        
-        // Only increment if this is a new visitor (hasn't visited before)
-        if (!hasVisited) {
-          count = count + 1;
-          localStorage.setItem('hasVisitedBefore', 'true');
-          localStorage.setItem('globalVisitorCount', count);
-        }
-        
-        document.getElementById('visitor-count').textContent = count.toLocaleString();
+    // Load saved theme or detect system preference
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (savedTheme) {
+        html.setAttribute('data-theme', savedTheme);
+        themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+      } else if (systemDark) {
+        html.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+      } else {
+        html.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '🌙';
+      }
+    }
+    
+    // Visitor counter
+    function updateVisitorCount() {
+      const hasVisited = localStorage.getItem('hasVisitedBefore');
+      let count = localStorage.getItem('globalVisitorCount');
+      
+      if (!count) {
+        count = Math.floor(Math.random() * 2000) + 500;
+      } else {
+        count = parseInt(count);
       }
       
-      // Update counter when page loads
-      document.addEventListener('DOMContentLoaded', updateVisitorCount);
-    </script>
-  </footer>
+      if (!hasVisited) {
+        count = count + 1;
+        localStorage.setItem('hasVisitedBefore', 'true');
+        localStorage.setItem('globalVisitorCount', count);
+      }
+      
+      document.getElementById('visitor-count').textContent = count.toLocaleString();
+    }
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadTheme();
+      updateVisitorCount();
+    });
+  </script>
 </body>
 </html>
+
+---
+
+<!-- _layouts/home.html -->
+---
+layout: default
+---
+
+<div class="home">
+  {% if site.author.bio %}
+  <div class="site-description">
+    {{ site.author.bio }}
+  </div>
+  {% endif %}
+
+  <div class="wrapper">
+    {% if site.posts and site.posts.size > 0 %}
+    <ul class="post-list">
+      {% for post in paginator.posts %}
+      <li class="post-item">
+        <h2 class="post-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h2>
+        
+        <p class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: site.date_format | default: "%B %-d, %Y" }}
+          </time>
+          {% if post.tags.size > 0 %}
+          • 
+          {% for tag in post.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+          {% endif %}
+        </p>
+        
+        {% if post.excerpt %}
+        <div class="post-excerpt">
+          {{ post.excerpt }}
+        </div>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Pagination -->
+    {% if paginator.total_pages > 1 %}
+    <div class="pagination">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Newer posts</a>
+      {% endif %}
+      
+      <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+      
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}">Older posts &raquo;</a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div class="no-posts">
+      <h2>No posts yet</h2>
+      <p>Create your first post in the <code>_posts</code> directory to get started.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+---
+
+<!-- _layouts/post.html -->
+---
+layout: default
+---
+
+<div class="wrapper">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">{{ page.title | escape }}</h1>
+      <p class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: site.date_format | default: "%B %-d, %Y" }}
+        </time>
+        {% if page.tags.size > 0 %}
+        • 
+        {% for tag in page.tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+        {% endif %}
+      </p>
+    </header>
+
+    <div class="post-content">
+      {{ content }}
+    </div>
+  </article>
+</div>
+
+---
+
+<!-- _layouts/page.html -->
+---
+layout: default
+---
+
+<div class="wrapper">
+  <article class="page">
+    <header class="page-header">
+      <h1 class="page-heading">{{ page.title | escape }}</h1>
+    </header>
+
+    <div class="page-content-wrapper">
+      {{ content }}
+    </div>
+  </article>
+</div>

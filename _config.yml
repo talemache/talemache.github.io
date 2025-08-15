@@ -1,3 +1,4 @@
+# Updated _config.yml for Celeste theme
 title: Ryan Levels
 description: "Music • Growth • Tech"
 url: "https://levelyn.blog"
@@ -6,20 +7,31 @@ baseurl: ""
 # Contact info
 email: "ryan@levelyn.blog"
 
-# Use no theme - we'll do custom layouts
-theme: no-style-please
+# Author info
+author:
+  name: Ryan Levels
+  bio: "Music producer and software developer. Still learning about life every day."
+
+# Theme settings (remove no-style-please)
+# theme: no-style-please (remove this line)
 
 # Plugins
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-paginate
+
+# Pagination
+paginate: 10
+paginate_path: "/page:num/"
 
 # Markdown settings
 markdown: kramdown
 kramdown:
   input: GFM
+  syntax_highlighter: rouge
 
-# Social links (for footer)
+# Social links
 social_links:
   github: "https://github.com/talemache"
   linkedin: "https://www.linkedin.com/in/ryan-l-895b3b126/"
@@ -32,3 +44,12 @@ exclude:
   - Gemfile.lock
   - node_modules
   - vendor
+
+# Celeste theme specific settings
+show_excerpts: true
+date_format: "%B %d, %Y"
+
+# Navigation
+header_pages:
+  - about.md
+  - archive.md
