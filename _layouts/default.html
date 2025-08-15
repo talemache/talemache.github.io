@@ -28,28 +28,29 @@
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="header-wrapper">
-      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-      
-      <nav class="site-nav">
-        <ul class="nav-links">
-          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-          <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
-        </ul>
+  <div class="site-container">
+    <header class="site-header">
+      <div class="header-wrapper">
+        <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
         
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-          <span id="theme-icon">🌙</span>
-        </button>
-      </nav>
-    </div>
-  </header>
+        <nav class="site-nav">
+          <ul class="nav-links">
+            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+            <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
+          </ul>
+          
+          <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+            <span id="theme-icon">🌙</span>
+          </button>
+        </nav>
+      </div>
+    </header>
 
-  <main class="page-content">
-    {{ content }}
-  </main>
+    <main class="page-content">
+      {{ content }}
+    </main>
 
-  <footer class="site-footer">
+    <footer class="site-footer">
     <div class="footer-content">
       <h3 class="footer-heading">{{ site.title }}</h3>
       
@@ -72,7 +73,8 @@
         </div>
       </div>
     </div>
-  </footer>
+      </footer>
+  </div>
 
   <!-- Theme toggle script -->
   <script>
