@@ -4,9 +4,7 @@ title:
 permalink: /podcast/
 ---
 
-# The Unraveling Project
-
-This is my attempt at working through life, creativity, and everything in between. Listen to it here, or wherever you listen to your podcasts.
+This is my attempt at working through life, creativity, and everything in between. Listen to it here, or on your favorite pod listening app.
 
 <div class="podcast-intro">
   <p>Ryan Wears a Hat</p>
