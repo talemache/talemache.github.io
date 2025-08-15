@@ -22,5 +22,9 @@ layout: default
     <div class="post-content">
       {{ content }}
     </div>
+
+    {% if page.comments != false %}
+      {% include comments.html %}
+    {% endif %}
   </article>
 </div>
