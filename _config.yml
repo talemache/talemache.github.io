@@ -50,3 +50,4 @@ date_format: "%B %d, %Y"
 header_pages:
   - about.md
   - archive.md
+  - podcast.md
