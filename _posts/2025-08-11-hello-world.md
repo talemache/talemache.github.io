@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "welcome to Levelyn"
+title: "welcome to Levelyn 👋"
 date: 2025-08-11 12:00:00 -0400
 tags: [intro, music, tech]
 excerpt: "First post! Not sure what to write about but want to do this daily. Let's see where this goes."
