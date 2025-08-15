@@ -8,12 +8,12 @@ layout: default
       <h1 class="post-title">{{ page.title | escape }}</h1>
       <p class="post-meta">
         <time datetime="{{ page.date | date_to_xmlschema }}">
-          {{ page.date | date: "%B %-d, %Y" }}
+          {{ page.date | date: site.date_format | default: "%B %-d, %Y" }}
         </time>
         {% if page.tags.size > 0 %}
-        • Tags: 
+        • 
         {% for tag in page.tags %}
-          <span class="tag">{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
+          <span class="tag">{{ tag }}</span>
         {% endfor %}
         {% endif %}
       </p>

@@ -12,9 +12,6 @@ author:
   name: Ryan Levels
   bio: "Music producer and software developer. Still learning about life every day."
 
-# Theme settings (remove no-style-please)
-# theme: no-style-please (remove this line)
-
 # Plugins
 plugins:
   - jekyll-feed

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Archive
+title: archive
 permalink: /archive/
 ---
 
@@ -12,7 +12,7 @@ permalink: /archive/
   {% for post in year.items %}
     <li>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a> 
-      <span style="color:#888">— {{ post.date | date: "%b %d" }}</span>
+      <span style="color: var(--muted-color)">— {{ post.date | date: "%b %d" }}</span>
     </li>
   {% endfor %}
 </ul>

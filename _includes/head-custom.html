@@ -1,19 +1,10 @@
-<!-- Custom head additions -->
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-
 <!-- Favicons -->
 <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
-<link rel="apple-touch-icon" href="{{ '/assets/img/og-image.png' | relative_url }}">
 
 <!-- Theme color -->
-<meta name="theme-color" content="#0f9d8f">
+<meta name="theme-color" content="#268bd2">
 
-<!-- Social preview image -->
-{% assign og_image = '/assets/img/og-image.png' | relative_url %}
-<meta property="og:image" content="{{ site.url | default: site.github.url }}{{ og_image }}">
+<!-- Social preview image (create this file) -->
+<meta property="og:image" content="{{ site.url | default: site.github.url }}/assets/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{{ site.url | default: site.github.url }}{{ og_image }}">
+<meta name="twitter:image" content="{{ site.url | default: site.github.url }}/assets/img/og-image.png">
