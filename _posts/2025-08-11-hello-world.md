@@ -6,4 +6,6 @@ tags: [intro, music, tech]
 excerpt: "First post! Not sure what to write about but want to do this daily. Let's see where this goes."
 ---
 
-First post! Not sure what to write about but want to do this daily. Let's see where this goes.
+First post! Not sure what to write about so here's a cat typing 
+
+![Cat typing](/assets/img/cat.gif)
