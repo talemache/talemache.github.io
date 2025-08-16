@@ -61,4 +61,8 @@ layout: default
     </div>
     {% endif %}
   </div>
+
+  <!-- Disqus comment counts on list posts -->
+  <a href="{{ post.url | relative_url }}#disqus_thread" data-disqus-identifier="{{ post.url }}">Comments</a>
+
 </div>
