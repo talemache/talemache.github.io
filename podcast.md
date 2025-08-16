@@ -4,7 +4,7 @@ title:
 permalink: /podcast/
 ---
 
-This is my attempt at working through life, creativity, and everything in between. Listen to it here, or on your favorite pod listening app.
+Welcome to the pod! Kick back, relax, and give it a listen here or on your favorite podcast app.
 
 <div class="podcast-intro">
   <img src="/assets/img/podcast-banner.png" alt="Ryan Wears a Hat" style="width: 100%; margin-bottom: 1rem;">
