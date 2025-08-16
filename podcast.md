@@ -7,7 +7,7 @@ permalink: /podcast/
 This is my attempt at working through life, creativity, and everything in between. Listen to it here, or on your favorite pod listening app.
 
 <div class="podcast-intro">
-  <p>Ryan Wears a Hat</p>
+  <p>![Ryan Wears a Hat](/assets/img/cat.gif)</p>
 </div>
 
 ## Recent Episodes
