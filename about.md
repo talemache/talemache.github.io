@@ -15,7 +15,7 @@ I’m passionate about the intersection of technology, music, and creativity. To
 - **Learning**: Whether it’s technical, creative, or just life in general, I’m always trying to expand what I know — and hopefully get a little better along the way.
 
 ## This Blog
-This is my space to share thoughts on music production, software development, personal growth, and the lessons I’m picking up as I go. It’s built with Jekyll and hosted on GitHub Pages.
+This is my space to share thoughts on music production, software development, personal growth, and the lessons I’m picking up as I go. It’s built with [Jekyll](https://jekyllrb.com/) and hosted on [GitHub Pages](https://docs.github.com/en/pages).
 
 ## Connect
 Feel free to reach out if you’d like to collaborate, swap ideas, or just chat about music, tech, or life. And if nothing else, thanks for stopping by my little corner of the internet!
