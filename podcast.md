@@ -7,7 +7,8 @@ permalink: /podcast/
 This is my attempt at working through life, creativity, and everything in between. Listen to it here, or on your favorite pod listening app.
 
 <div class="podcast-intro">
-  <p>![Ryan Wears a Hat](/assets/img/cat.gif)</p>
+  <img src="/assets/img/podcast-banner.png" alt="Ryan Wears a Hat" style="max-width: 200px; margin-bottom: 1rem;">
+  <p>An ongoing conversation about making sense of life, music, and tech.</p>
 </div>
 
 ## Recent Episodes
