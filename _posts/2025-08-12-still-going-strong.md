@@ -7,5 +7,6 @@ excerpt: "I ended up working well into the next day on this blog setup, and I ha
 Hopefully I can keep this momentum going!"
 ---
 
-I ended up working well into the next day on this blog setup, and I have to get up for work in a couple of hours. It's been a while since I was this excited to do something that involved computers after working hours.
-Hopefully I can keep this momentum going!
+I ended up working well into the next day getting this blog set up, and now I’ve only got a couple of hours before I have to be up for work. It’s been a long time since I’ve felt this excited about doing something with computers after hours, and honestly, it feels good to have that spark again.
+
+Here’s hoping I can keep this momentum going — because right now, the late nights feel worth it.

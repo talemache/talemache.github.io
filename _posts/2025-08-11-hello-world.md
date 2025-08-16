@@ -6,6 +6,9 @@ tags: [intro, music, tech]
 excerpt: ""
 ---
 
-First post! Not sure what to write about so here's a cat typing 
+First post!
+I wasn’t totally sure what to write about to kick this thing off, so here’s a cat typing away on a keyboard:
 
 ![Cat typing](/assets/img/cat.gif)
+
+More to come soon!
