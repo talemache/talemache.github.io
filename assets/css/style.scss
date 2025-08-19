@@ -330,6 +330,14 @@ body {
   margin-right: auto;
 }
 
+/* Keep post images responsive and centered by default */
+.post-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.25rem auto; /* centers + adds spacing */
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .header-wrapper {
