@@ -11,7 +11,7 @@ It’s been almost 10 years since I last ran a half-marathon — and this coming
 
 To be honest, the thought of running that far again scared me at first. Over time, I fell out of shape, and the idea of pushing my body like that felt like a really bad idea. But little by little, I’ve been putting in the work. I’ve been running more, making better choices, and trying to set myself up mentally and physically to stay active for as long as I can.  
 
-[Felt Like it](assets/img/forrest-gump-running.gif)
+![I was running](/assets/img/forrest-gump-running.gif)
 
 ## Why It Matters  
 Running has always been a big part of my life. For me, working out isn’t just about the physical side — it’s about mental health, too. Getting that peace back, mile by mile, has reminded me why it was so important in the first place.  
