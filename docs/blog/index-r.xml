@@ -10,7 +10,7 @@
 <atom:link href="https://dominicroye.github.io/blog/index-r.xml" rel="self" type="application/rss+xml"/>
 <description>This is my blog where I practice sharing my curiosity about R, particularly, the world of cartography and data visualization. I take this opportunity to invite you to participate in the [#30DayChartChallenge](https://bsky.app/profile/30daychartchall.bsky.social).&lt;br&gt;&lt;br&gt;
 </description>
-<generator>quarto-1.8.27</generator>
+<generator>quarto-1.9.12</generator>
 <lastBuildDate>Sun, 01 Mar 2026 23:00:00 GMT</lastBuildDate>
 <item>
   <title>Downscaling solar radiation in the Canary Islands with GAM</title>
