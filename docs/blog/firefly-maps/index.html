@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -151,7 +151,31 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#cartography-firefly" id="toc-cartography-firefly" class="nav-link active" data-scroll-target="#cartography-firefly">Cartography <em>firefly</em></a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li>
+<a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
+  <li><a href="#earthquakes" id="toc-earthquakes" class="nav-link" data-scroll-target="#earthquakes">Earthquakes</a></li>
+  <li><a href="#blue-marble-background-map" id="toc-blue-marble-background-map" class="nav-link" data-scroll-target="#blue-marble-background-map">Blue Marble background Map</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#firefly-map-construction" id="toc-firefly-map-construction" class="nav-link" data-scroll-target="#firefly-map-construction"><em>Firefly</em> map construction</a>
+  <ul class="collapse">
+<li><a href="#boundaries-and-graticules" id="toc-boundaries-and-graticules" class="nav-link" data-scroll-target="#boundaries-and-graticules">Boundaries and graticules</a></li>
+  <li><a href="#map-with-image-background" id="toc-map-with-image-background" class="nav-link" data-scroll-target="#map-with-image-background">Map with image background</a></li>
+  <li><a href="#map-with-background-and-earthquakes" id="toc-map-with-background-and-earthquakes" class="nav-link" data-scroll-target="#map-with-background-and-earthquakes">Map with background and earthquakes</a></li>
+  <li><a href="#final-map" id="toc-final-map" class="nav-link" data-scroll-target="#final-map">Final map</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
@@ -200,11 +224,9 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 
 
 
-</header>
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><section id="cartography-firefly" class="level1"><h1>Cartography <em>firefly</em>
+</header><section id="cartography-firefly" class="level1"><h1>Cartography <em>firefly</em>
 </h1>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
 <p>Firefly maps are promoted and described by <a href="https://x.com/John_M_Nelson">John Nelson</a> who published a <a href="https://adventuresinmapping.com/2016/10/17/firefly-cartography/">post</a> in 2016 about its characteristics. However, these types of maps are linked to ArcGIS, which has led me to try to recreate them in R. The recent <code>ggplot2</code> extension <a href="https://github.com/marcmenem/ggshadow">ggshadow</a> facilitates the creation of this cartographic style. It is characterized by three elements 1) a dark and unsaturated basemap (eg satellite imagery) 2) a masked vignette and highlighted area and 3) a single bright thematic layer. The essential are the colors and the brightness that is achieved with cold colors, usually neon colors. John Nelson explains more details in this <a href="https://www.esri.com/arcgis-blog/products/mapping/mapping/steal-this-firefly-style-please">post</a>.</p>
 <p>What is the firefly style for? In the words of <a href="https://www.esri.com/arcgis-blog/products/mapping/mapping/steal-this-firefly-style-please">John Nelson</a>: “the map style that captures our attention and dutifully honors the First Law of Geography”. John refers to what was said by Waldo Tobler “everything is related to everything else, but near things are more related than distant things” (Tobler 1970).</p>
 <p>In this post we will visualize all earthquakes recorded in southwestern Europe with a magnitude greater than 3.</p>

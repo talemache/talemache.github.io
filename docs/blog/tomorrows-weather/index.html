@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -114,7 +114,6 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 <meta name="twitter:creator" content="@drxeo.eu">
 <meta name="twitter:site" content="@drxeo.eu">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image:alt" content="Part II. Orthographic map">
 <meta name="twitter:image-height" content="1800">
 <meta name="twitter:image-width" content="1800">
 </head>
@@ -170,10 +169,30 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#part-i.-geoprocessing-with-google-earth-engine-gee" id="toc-part-i.-geoprocessing-with-google-earth-engine-gee" class="nav-link" data-scroll-target="#part-i.-geoprocessing-with-google-earth-engine-gee">Part I. Geoprocessing with Google Earth Engine (GEE)</a>
+  <ul class="collapse">
+  <li><a href="#before-using-gee-in-r" id="toc-before-using-gee-in-r" class="nav-link" data-scroll-target="#before-using-gee-in-r">Before using GEE in R</a></li>
+  <li><a href="#access-the-global-forecast-system" id="toc-access-the-global-forecast-system" class="nav-link" data-scroll-target="#access-the-global-forecast-system">Access the Global Forecast System</a></li>
+  <li><a href="#dynamic-map-via-gee" id="toc-dynamic-map-via-gee" class="nav-link" data-scroll-target="#dynamic-map-via-gee">Dynamic map via GEE</a></li>
+  <li><a href="#export-multiple-images" id="toc-export-multiple-images" class="nav-link" data-scroll-target="#export-multiple-images">Export multiple images</a></li>
+  </ul></li>
+  <li><a href="#part-ii.-orthographic-map" id="toc-part-ii.-orthographic-map" class="nav-link" data-scroll-target="#part-ii.-orthographic-map">Part II. Orthographic map</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#administrative-boundaries-and-graticules" id="toc-administrative-boundaries-and-graticules" class="nav-link" data-scroll-target="#administrative-boundaries-and-graticules">Administrative boundaries and graticules</a></li>
+  <li><a href="#map-construction" id="toc-map-construction" class="nav-link" data-scroll-target="#map-construction">Map construction</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html -->
 <!-- 
@@ -220,15 +239,8 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 </header>
 
 
-
-<div class="no-row-height column-margin column-container"><div class="">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Part II. Orthographic map"><img src="featured.png" class="img-fluid figure-img" alt="Part II. Orthographic map"></a></p>
-<figcaption><a href="#part-ii.-orthographic-map">Part II. Orthographic map</a></figcaption>
-</figure>
-</div>
-</div></div><p>A while back I saw Chris Campbell’s global maps from the Financial Times like in this Tweet and I thought I needed to do it in R. In this first post of 2023 well see how we can access the GFS (Global Forecast System) data and visualize it with <code>{ggplot2}</code>, even though there are several ways, in this case we use the Google Earth Engine API via the <code>{rgee}</code> package for accessing the GFS data. We will select the most recent run and calculate the maximum temperature for the next few days.</p>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
+<p>A while back I saw Chris Campbell’s global maps from the Financial Times like in this Tweet and I thought I needed to do it in R. In this first post of 2023 well see how we can access the GFS (Global Forecast System) data and visualize it with <code>{ggplot2}</code>, even though there are several ways, in this case we use the Google Earth Engine API via the <code>{rgee}</code> package for accessing the GFS data. We will select the most recent run and calculate the maximum temperature for the next few days.</p>
 <section id="packages" class="level1">
 <h1>Packages</h1>
 <table class="caption-top table">

@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -151,10 +151,26 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a>
+  <ul class="collapse">
+<li><a href="#access-the-data" id="toc-access-the-data" class="nav-link" data-scroll-target="#access-the-data">Access the data</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data preparation</a></li>
+  <li><a href="#distribution-chart" id="toc-distribution-chart" class="nav-link" data-scroll-target="#distribution-chart">Distribution chart</a></li>
+  <li><a href="#buffer-of-25-km-for-valencia" id="toc-buffer-of-25-km-for-valencia" class="nav-link" data-scroll-target="#buffer-of-25-km-for-valencia">Buffer of 2,5 km for Valencia</a></li>
+  <li><a href="#prepare-data-for-mapping" id="toc-prepare-data-for-mapping" class="nav-link" data-scroll-target="#prepare-data-for-mapping">Prepare data for mapping</a></li>
+  <li><a href="#map-of-valencia" id="toc-map-of-valencia" class="nav-link" data-scroll-target="#map-of-valencia">Map of Valencia</a></li>
+  <li><a href="#dynamic-map-with-leaflet" id="toc-dynamic-map-with-leaflet" class="nav-link" data-scroll-target="#dynamic-map-with-leaflet">Dynamic map with leaflet</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
+<main class="content" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title"> 
 --><!-- <header id="title-block-header" class="quarto-title-block default page-columns"> --><!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> --><header id="title-block-header" class="quarto-title-block default page-columns"><div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
@@ -199,10 +215,8 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 
 
 
-</header>
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><p>The General Directorate for the Cadastre of Spain has spatial information of the all buildings except for the Basque Country and Navarra. This data set is part of the implementation of <a href="https://knowledge-base.inspire.ec.europa.eu/index_en">INSPIRE</a>, the Space Information Infrastructure in Europe. More information can be found <a href="https://www.catastro.hacienda.gob.es/webinspire/index.html">here</a>. We will use the links (urls) in ATOM format, which is an RSS type for web feeds, allowing us to obtain the download link for each municipality. Since 2022, a package to access the API is directly available <a href="https://github.com/rOpenSpain/CatastRo">CatastRo</a>.</p>
+</header><p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
+<p>The General Directorate for the Cadastre of Spain has spatial information of the all buildings except for the Basque Country and Navarra. This data set is part of the implementation of <a href="https://knowledge-base.inspire.ec.europa.eu/index_en">INSPIRE</a>, the Space Information Infrastructure in Europe. More information can be found <a href="https://www.catastro.hacienda.gob.es/webinspire/index.html">here</a>. We will use the links (urls) in ATOM format, which is an RSS type for web feeds, allowing us to obtain the download link for each municipality. Since 2022, a package to access the API is directly available <a href="https://github.com/rOpenSpain/CatastRo">CatastRo</a>.</p>
 <section id="packages" class="level1"><h1>Packages</h1>
 <table class="caption-top table">
 <colgroup>
