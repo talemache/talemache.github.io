@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -151,10 +151,27 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#initial-considerations" id="toc-initial-considerations" class="nav-link" data-scroll-target="#initial-considerations">Initial considerations</a></li>
+  <li>
+<a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#import-and-project" id="toc-import-and-project" class="nav-link" data-scroll-target="#import-and-project">Import and project</a></li>
+  <li><a href="#extract-the-angles" id="toc-extract-the-angles" class="nav-link" data-scroll-target="#extract-the-angles">Extract the angles</a></li>
+  <li><a href="#selection" id="toc-selection" class="nav-link" data-scroll-target="#selection">Selection</a></li>
+  </ul>
+</li>
+  <li><a href="#estimate-the-distribution" id="toc-estimate-the-distribution" class="nav-link" data-scroll-target="#estimate-the-distribution">Estimate the distribution</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
+<main class="content" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title"> 
 --><!-- <header id="title-block-header" class="quarto-title-block default page-columns"> --><!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> --><header id="title-block-header" class="quarto-title-block default page-columns"><div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
@@ -199,10 +216,8 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 
 
 
-</header>
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><p>I recently created a visualization of the distribution of river flow directions and also of coastal orientations. Following its publication in social networks, I was asked to make a post about how I did it. Well, here we go to start with an example of rivers, coastal orientation is somewhat more complex. I did the same for a selection of European rivers here in this. However, originally I started with the orientation of the European coasts.</p>
+</header><p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
+<p>I recently created a visualization of the distribution of river flow directions and also of coastal orientations. Following its publication in social networks, I was asked to make a post about how I did it. Well, here we go to start with an example of rivers, coastal orientation is somewhat more complex. I did the same for a selection of European rivers here in this. However, originally I started with the orientation of the European coasts.</p>
 <p><a href="orientacion_eu.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="orientacion_eu.png" class="img-fluid"></a></p>
 <section id="packages" class="level1"><h1>Packages</h1>
 <p>In this post we will use the following packages:</p>

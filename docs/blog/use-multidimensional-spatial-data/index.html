@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -151,7 +151,24 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#initial-considerations" id="toc-initial-considerations" class="nav-link active" data-scroll-target="#initial-considerations">Initial considerations</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#extract-metadata" id="toc-extract-metadata" class="nav-link" data-scroll-target="#extract-metadata">Extract metadata</a></li>
+  <li><a href="#time-series-extraction" id="toc-time-series-extraction" class="nav-link" data-scroll-target="#time-series-extraction">Time-series extraction</a></li>
+  <li>
+<a href="#drought-map" id="toc-drought-map" class="nav-link" data-scroll-target="#drought-map">Drought map</a>
+  <ul class="collapse">
+<li><a href="#spain" id="toc-spain" class="nav-link" data-scroll-target="#spain">Spain</a></li>
+  <li><a href="#aragon" id="toc-aragon" class="nav-link" data-scroll-target="#aragon">Aragon</a></li>
+  </ul>
+</li>
+  <li><a href="#more-possibilities" id="toc-more-possibilities" class="nav-link" data-scroll-target="#more-possibilities">More possibilities</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
@@ -201,10 +218,8 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 
 
 
-</header>
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><section id="initial-considerations" class="level1"><h1>Initial considerations</h1>
+</header><section id="initial-considerations" class="level1"><h1>Initial considerations</h1>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
 <p>Space-time information is vital in many disciplines, especially in climatology or meteorology, and this makes it necessary to have a format that allows a multidimensional structure. It is also important that this format has a high degree of interchange compatibility and can store a large number of data. These characteristics led to the development of the open standard netCDF (NetworkCommon Data Form). The netCDF format is an open multi-dimensional scientific data exchange standard used with observational or model data, primarily in disciplines such as climatology, meteorology, and oceanography. The netCDF convention is managed by <a href="https://www.unidata.ucar.edu/software/netcdf/">Unidata</a>. It is a space-time format with a regular or irregular grid. The multidimensional structure in the form of an array allows the use of space-time and multivariable data. The general characteristics of netCDF refer to the use of an n-dimensional coordinate system, multiple variables, and a regular or irregular grid. In addition, metadata describing the contents are included. The extension of the netCDF format is “nc”.</p>
 <p><a href="3d_ncdf.en.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="3d_ncdf.en.png" class="img-fluid"></a></p>
 <p>I recently used <a href="https://monitordesequia.csic.es/historico/">drought data from Spain</a> in netCDF format with a resolution of 1 km to represent the state of drought for each year since 1960. The SPEI index (Standardized Precipitation-Evapotranspiration Index) is widely used to describe the drought with different time intervals (3, 6, 12 months, etc.).</p>
@@ -328,7 +343,7 @@ Note
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spei_zar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">spei_zar</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span>, names_to <span class="op">=</span> <span class="st">"reg"</span>, values_to <span class="op">=</span> <span class="st">"spei"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    sign <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>    sign <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
 <span>      <span class="va">spei</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">~</span> <span class="st">"drought"</span>,</span>
 <span>      <span class="va">spei</span> <span class="op">&gt;</span> <span class="fl">0.5</span> <span class="op">~</span> <span class="st">"wet"</span>,</span>
 <span>      <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"normal"</span></span>
@@ -397,7 +412,7 @@ Note
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/names.html">names</a></span><span class="op">(</span><span class="va">spei_df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"spei"</span></span>
 <span></span>
 <span><span class="co"># categorize the index and fix the order of the factor</span></span>
-<span><span class="va">spei_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">spei_df</span>, spei_cat <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span><span class="va">spei_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">spei_df</span>, spei_cat <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
 <span>  <span class="va">spei</span> <span class="op">&gt;</span> <span class="op">-</span><span class="fl">0.9</span> <span class="op">~</span> <span class="st">"slight"</span>,</span>
 <span>  <span class="va">spei</span> <span class="op">&gt;</span> <span class="op">-</span><span class="fl">1.5</span> <span class="op">&amp;</span> <span class="va">spei</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">0.9</span> <span class="op">~</span> <span class="st">"moderate"</span>,</span>
 <span>  <span class="va">spei</span> <span class="op">&gt;</span> <span class="op">-</span><span class="fl">2</span> <span class="op">&amp;</span> <span class="va">spei</span> <span class="op">&lt;=</span> <span class="op">-</span><span class="fl">1.5</span> <span class="op">~</span> <span class="st">"severe"</span>,</span>

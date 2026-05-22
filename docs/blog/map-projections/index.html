@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Dominic Royé">
+<meta name="dcterms.date" content="2026-05-03">
+<title>Map projections: a practical guide to common mistakes and how to fix them – Dr Dominic Royé</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../../assets/img/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1d7782fe8219706d67ed97fdfc0d89c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-1e752fc7846aa4ee8c3894c543f57a37.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/academicons-1.9.4/size.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NK2N7F46NB"></script><script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
+</script>
+<meta name="twitter:title" content="Map projections: a practical guide to common mistakes and how to fix them">
+<meta name="twitter:description" content="Researcher in climate science at MBG-CSIC">
+<meta name="twitter:image" content="https://dominicroye.github.io/blog/map-projections/featured.png">
+<meta name="twitter:creator" content="@drxeo.eu">
+<meta name="twitter:site" content="@drxeo.eu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="1800">
+<meta name="twitter:image-width" content="3600">
+</head>
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/img/logo.svg" alt="" class="navbar-logo light-content"><img src="../../assets/img/logo.svg" alt="" class="navbar-logo dark-content"></a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Dr Dominic Royé</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publication/index.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../bioclim/index.html"> 
+<span class="menu-text">Bioclim</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/index.html"> 
+<span class="menu-text">Data Viz</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#why-projections-matter" id="toc-why-projections-matter" class="nav-link active" data-scroll-target="#why-projections-matter">Why projections matter</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li>
+<a href="#the-offenders-projections-you-should-stop-using-for-most-things" id="toc-the-offenders-projections-you-should-stop-using-for-most-things" class="nav-link" data-scroll-target="#the-offenders-projections-you-should-stop-using-for-most-things">The offenders: projections you should stop using (for most things)</a>
+  <ul class="collapse">
+<li><a href="#mercator-the-worlds-most-misused-projection" id="toc-mercator-the-worlds-most-misused-projection" class="nav-link" data-scroll-target="#mercator-the-worlds-most-misused-projection">Mercator | the world’s most misused projection</a></li>
+  <li><a href="#geographic-coordinates" id="toc-geographic-coordinates" class="nav-link" data-scroll-target="#geographic-coordinates">Geographic coordinates</a></li>
+  </ul>
+</li>
+  <li><a href="#a-taxonomy-of-projections-by-purpose" id="toc-a-taxonomy-of-projections-by-purpose" class="nav-link" data-scroll-target="#a-taxonomy-of-projections-by-purpose">A taxonomy of projections by purpose</a></li>
+  <li>
+<a href="#practical-recommendations-by-context" id="toc-practical-recommendations-by-context" class="nav-link" data-scroll-target="#practical-recommendations-by-context">Practical recommendations by context</a>
+  <ul class="collapse">
+<li><a href="#global-thematic-maps-use-equal-area-projections" id="toc-global-thematic-maps-use-equal-area-projections" class="nav-link" data-scroll-target="#global-thematic-maps-use-equal-area-projections">Global thematic maps: use equal-area projections</a></li>
+  <li><a href="#how-to-visually-verify-area-distortion-the-tissot-indicatrix" id="toc-how-to-visually-verify-area-distortion-the-tissot-indicatrix" class="nav-link" data-scroll-target="#how-to-visually-verify-area-distortion-the-tissot-indicatrix">How to visually verify area distortion: the Tissot indicatrix</a></li>
+  <li><a href="#regional-and-continental-maps" id="toc-regional-and-continental-maps" class="nav-link" data-scroll-target="#regional-and-continental-maps">Regional and continental maps</a></li>
+  <li><a href="#hemispheric-and-globe-view-maps-the-orthographic-projection" id="toc-hemispheric-and-globe-view-maps-the-orthographic-projection" class="nav-link" data-scroll-target="#hemispheric-and-globe-view-maps-the-orthographic-projection">Hemispheric and “globe-view” maps: the Orthographic projection</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#specifying-projections-in-r-with-sf-ggplot2-and-terra" id="toc-specifying-projections-in-r-with-sf-ggplot2-and-terra" class="nav-link" data-scroll-target="#specifying-projections-in-r-with-sf-ggplot2-and-terra">Specifying projections in R with <code>sf</code>, <code>ggplot2</code>, and <code>terra</code></a>
+  <ul class="collapse">
+<li><a href="#vector-data-with-sf-and-ggplot2" id="toc-vector-data-with-sf-and-ggplot2" class="nav-link" data-scroll-target="#vector-data-with-sf-and-ggplot2">Vector data with <code>sf</code> and <code>ggplot2</code></a></li>
+  <li><a href="#raster-data-with-terra" id="toc-raster-data-with-terra" class="nav-link" data-scroll-target="#raster-data-with-terra">Raster data with <code>terra</code></a></li>
+  </ul>
+</li>
+  <li><a href="#quick-reference-projection-codes-for-common-use-cases" id="toc-quick-reference-projection-codes-for-common-use-cases" class="nav-link" data-scroll-target="#quick-reference-projection-codes-for-common-use-cases">Quick-reference: projection codes for common use cases</a></li>
+  <li><a href="#checklist-common-projection-mistakes-in-scientific-publications" id="toc-checklist-common-projection-mistakes-in-scientific-publications" class="nav-link" data-scroll-target="#checklist-common-projection-mistakes-in-scientific-publications">Checklist: common projection mistakes in scientific publications</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title"> 
+--><!-- <header id="title-block-header" class="quarto-title-block default page-columns"> --><!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> --><header id="title-block-header" class="quarto-title-block default page-columns"><div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
+<h1 class="title">Map projections: a practical guide to common mistakes and how to fix them</h1>
+    <div class="quarto-categories">
+        <div class="quarto-category">R</div>
+        <div class="quarto-category">R:Intermediate</div>
+        <div class="quarto-category">Visualization</div>
+        <div class="quarto-category">Maps</div>
+        <div class="quarto-category">Bad practice</div>
+        <div class="quarto-category">Projections</div>
+        <div class="quarto-category">GIS</div>
+      </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dominic Royé </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 3, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+
+</header><p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
+<p>If you have spent any time reading scientific journals, news outlets, or even peer-reviewed climate research, you have almost certainly encountered a world map stretched beyond recognition, with continents bloated at the poles, Greenland looming as large as Africa, or a country’s area visually misrepresented because of an inappropriate coordinate reference system. Map projections are one of the most systematically overlooked aspects of cartographic communication, and the consequences go beyond aesthetics: a wrong projection can actively mislead the reader, distort spatial relationships, and undermine the scientific message.</p>
+<p>In this post I want to offer a practical guide, grounded in both cartographic theory and real R code, to help you choose the right projection for your purpose and avoid the most common pitfalls.</p>
+<section id="why-projections-matter" class="level2"><h2 class="anchored" data-anchor-id="why-projections-matter">Why projections matter</h2>
+<p>The Earth is (approximately) a sphere. A map is flat. Translating a curved surface onto a plane inevitably introduces distortion, and no projection can simultaneously preserve all of the following properties:</p>
+<ul>
+<li>
+<strong>Area</strong> relative sizes of regions are maintained (equal-area or <em>equivalent</em> projections)</li>
+<li>
+<strong>Shape</strong> local angles are preserved, so small regions look correct (<em>conformal</em> projections)</li>
+<li>
+<strong>Distance</strong> distances from one or two specific points are preserved (<em>equidistant</em> projections)</li>
+<li>
+<strong>Direction</strong> bearings from a central point are preserved (<em>azimuthal</em> projections)</li>
+</ul>
+<p>Every projection is a compromise, trading distortion of one property for accuracy in another. The critical question is therefore not <em>“which projection is best?”</em> but rather <em>“which distortion is acceptable for my specific purpose?”</em></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The key rule
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Match the projection to the purpose.</strong> A projection used for navigation is not appropriate for a choropleth showing disease incidence. A projection ideal for a continental map of Europe is not suitable for a global map of biodiversity.</p>
+</div>
+</div>
+</section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">tidyverse</td>
+<td style="text-align: left;">Collection of packages (visualization, manipulation): ggplot2, dplyr, purrr, etc.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sf</td>
+<td style="text-align: left;">Simple Feature: import, export and manipulate vector data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">terra</td>
+<td style="text-align: left;">Import, export, manipulate and project raster (and vector) data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">giscoR</td>
+<td style="text-align: left;">Eurostat GISCO API: administrative boundaries for Europe and the world</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">patchwork</td>
+<td style="text-align: left;">Compose multiple ggplot2 plots into a single figure</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ggtext</td>
+<td style="text-align: left;">Improved text rendering for ggplot2 (HTML/Markdown in labels)</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-warnings="false">
+<details class="code-fold"><summary>Code Packages</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://r-spatial.github.io/sf/">"sf"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"sf"</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://rspatial.org/">"terra"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"terra"</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://ropengov.github.io/giscoR/">"giscoR"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"giscoR"</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://patchwork.data-imaginist.com">"patchwork"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"patchwork"</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://wilkelab.org/ggtext/">"ggtext"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ggtext"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/">terra</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/giscoR/">giscoR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggtext/">ggtext</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="the-offenders-projections-you-should-stop-using-for-most-things" class="level2"><h2 class="anchored" data-anchor-id="the-offenders-projections-you-should-stop-using-for-most-things">The offenders: projections you should stop using (for most things)</h2>
+<section id="mercator-the-worlds-most-misused-projection" class="level3"><h3 class="anchored" data-anchor-id="mercator-the-worlds-most-misused-projection">Mercator | the world’s most misused projection</h3>
+<p>The Mercator projection was designed in 1569 by Gerardus Mercator for nautical navigation. It is a <em>conformal</em> projection, meaning it preserves local angles and shapes perfectly, which is exactly what sailors needed to plot straight compass bearings. For that specific purpose, it remains excellent.</p>
+<p>The problem is that Mercator dramatically exaggerates areas away from the equator. At 60° latitude, areas appear roughly four times larger than they actually are. Greenland is the most striking example: it looks comparable in size to Africa, when in reality Africa is about 14 times larger. Yet Mercator is still routinely used in scientific publications for choropleth maps, and global thematic analyses.</p>
+<p><strong>When is Mercator acceptable?</strong></p>
+<ul>
+<li>Web map tiles and interactive maps (OpenStreetMap), its conformal properties make tile seams invisible and it remains the de facto standard for tiled web maps at street to country scale</li>
+<li>Large-scale navigation charts</li>
+<li>Conformal mapping of small areas where distortion is negligible</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Google moved away from Mercator at global scale
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In August 2018, Google Maps switched to a <strong>3D globe view</strong> when zoomed out to world scale, replacing the flat Mercator canvas it had used since launch. The stated reason was exactly the distortion problem described here.</p>
+</div>
+</div>
+<p><strong>When should you never use Mercator?</strong></p>
+<ul>
+<li>Any thematic map where area size conveys information (choropleth, dot density, proportional symbols)</li>
+<li>Global or hemispheric maps</li>
+<li>Maps communicating spatial patterns of phenomena with area-dependent interpretations (e.g., biodiversity, population density, climate zones)</li>
+</ul>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># world countries from giscoR (low resolution, geographic CRS)</span></span>
+<span><span class="va">world</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get_countries.html">gisco_get_countries</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"2020"</span>, resolution <span class="op">=</span> <span class="st">"10"</span>, epsg <span class="op">=</span> <span class="st">"4326"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">CNTR_ID</span> <span class="op">!=</span> <span class="st">"AQ"</span><span class="op">)</span> <span class="op">|&gt;</span>   <span class="co"># remove Antarctica</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/valid.html">st_make_valid</a></span><span class="op">(</span><span class="op">)</span>               <span class="co"># repair any degenerate geometries</span></span>
+<span></span>
+<span><span class="co"># compute land area (km^2): because sf_use_s2(FALSE) forces planar geometry,</span></span>
+<span><span class="co"># we must project to an equal-area CRS first so that st_area() gives</span></span>
+<span><span class="co"># correct results (planar area on an equal-area projection = true geodesic area)</span></span>
+<span><span class="va">world</span> <span class="op">&lt;-</span> <span class="va">world</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>area_km2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">geometry</span>, <span class="st">"ESRI:54035"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fl">1e6</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># colour \u2713 green and \u2717 red using HTML spans (rendered via element_markdown)</span></span>
+<span><span class="va">color_sym</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"\u2713"</span>, <span class="st">"&lt;span style='color:#2a9e2a'&gt;&amp;#10003;&lt;/span&gt;"</span>, <span class="va">x</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"\u2717"</span>, <span class="st">"&lt;span style='color:#cc3333'&gt;&amp;#10007;&lt;/span&gt;"</span>, <span class="va">x</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">x</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># helper: build one map panel</span></span>
+<span><span class="va">make_map</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">crs_string</span>, <span class="va">title</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">data_proj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">crs_string</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data_proj</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">area_km2</span><span class="op">)</span>,</span>
+<span>            color <span class="op">=</span> <span class="st">"white"</span>, linewidth <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>default_crs <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_distiller</a></span><span class="op">(</span></span>
+<span>      palette <span class="op">=</span> <span class="st">"YlGn"</span>, direction <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>      name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="st">"True area"</span><span class="op">~</span> <span class="op">(</span><span class="va">km</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>      trans <span class="op">=</span> <span class="st">"log"</span>,</span>
+<span>      labels <span class="op">=</span> <span class="op">~</span><span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/number.html">number</a></span><span class="op">(</span><span class="va">.</span>, accuracy <span class="op">=</span> <span class="fl">1</span>, scale_cut <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/number.html">cut_short_scale</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu">color_sym</span><span class="op">(</span><span class="va">title</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">11</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>      plot.title <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, hjust <span class="op">=</span> <span class="fl">0.5</span>, margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>b <span class="op">=</span> <span class="fl">6</span>, t <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>      legend.position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
+<span>      legend.key.width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">2</span>, <span class="st">"lines"</span><span class="op">)</span>,</span>
+<span>      legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">9</span><span class="op">)</span>,</span>
+<span>      legend.key.height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">.4</span>, <span class="st">"lines"</span><span class="op">)</span>,</span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">p_mercator</span>  <span class="op">&lt;-</span> <span class="fu">make_map</span><span class="op">(</span><span class="va">world</span>, <span class="st">"EPSG:3395"</span>,   <span class="st">"Mercator (EPSG:3395) \u2717"</span><span class="op">)</span></span>
+<span><span class="va">p_eqearth</span>   <span class="op">&lt;-</span> <span class="fu">make_map</span><span class="op">(</span><span class="va">world</span>, <span class="st">"ESRI:54035"</span>,  <span class="st">"Equal Earth (ESRI:54035) \u2713"</span><span class="op">)</span></span>
+<span><span class="va">p_robinson</span>  <span class="op">&lt;-</span> <span class="fu">make_map</span><span class="op">(</span><span class="va">world</span>, <span class="st">"ESRI:54030"</span>,  <span class="st">"Robinson (ESRI:54030) \u2713"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">(</span><span class="op">(</span><span class="va">p_mercator</span> <span class="op">/</span> <span class="va">p_eqearth</span> <span class="op">/</span> <span class="va">p_robinson</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="2700"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The visual difference is striking. Even when the fill colour encodes the <em>true</em> area (computed in an equal-area projection), the Mercator panel makes Canada, Russia, and Greenland dominate the canvas, even though Mercator inflates them beyond their already large actual area, creating a systematic visual bias. In Equal Earth and Robinson, the polygon size and the fill colour tell the same story.</p>
+</section><section id="geographic-coordinates" class="level3"><h3 class="anchored" data-anchor-id="geographic-coordinates">Geographic coordinates</h3>
+<p>Almost as common as Mercator, and almost as problematic for thematic maps, is simply plotting data in geographic (longitude/latitude) coordinates, i.e., treating degrees as Cartesian x/y coordinates. This is sometimes called the <em>equirectangular</em> projection (EPSG:4326 used as a projection rather than a geographic CRS). It is not conformal, not equal-area, and not equidistant in a meaningful global sense. It is, however, the default when you load spatial data and forget to set a projection. In R, if you pass an <code>sf</code> object to <code>ggplot2</code> without specifying <code>coord_sf(crs = ...)</code>, you are implicitly using this projection.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Watch your defaults in ggplot2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you call <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> without explicitly setting <code>coord_sf(crs = ...)</code>, ggplot2 uses the native CRS of the data, usually WGS84 (EPSG:4326). While this is fine for inspection, it is not appropriate for final publication maps covering large areas.</p>
+</div>
+</div>
+</section></section><section id="a-taxonomy-of-projections-by-purpose" class="level2"><h2 class="anchored" data-anchor-id="a-taxonomy-of-projections-by-purpose">A taxonomy of projections by purpose</h2>
+<p>Before looking at specific recommendations, it helps to understand the main families:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Family</th>
+<th style="text-align: left;">Property preserved</th>
+<th style="text-align: left;">Typical use</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Equal-area (equivalent)</td>
+<td style="text-align: left;">Area</td>
+<td style="text-align: left;">Choropleth, density, species richness, climate zones</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Conformal</td>
+<td style="text-align: left;">Local shape/angles</td>
+<td style="text-align: left;">Navigation, large-scale topographic maps</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Compromise</td>
+<td style="text-align: left;">Neither fully, but balanced distortion</td>
+<td style="text-align: left;">General-purpose reference maps, atlases</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Azimuthal</td>
+<td style="text-align: left;">Direction from center</td>
+<td style="text-align: left;">Polar maps, great-circle routes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Equidistant</td>
+<td style="text-align: left;">Distance from one or two points</td>
+<td style="text-align: left;">Maps centered on a specific location</td>
+</tr>
+</tbody>
+</table></section><section id="practical-recommendations-by-context" class="level2"><h2 class="anchored" data-anchor-id="practical-recommendations-by-context">Practical recommendations by context</h2>
+<section id="global-thematic-maps-use-equal-area-projections" class="level3"><h3 class="anchored" data-anchor-id="global-thematic-maps-use-equal-area-projections">Global thematic maps: use equal-area projections</h3>
+<p>For any global map where the visual weight of a region should reflect its actual area, an equal-area projection is mandatory. The main options are:</p>
+<p><strong>Equal Earth</strong> (ESRI:54035): A pseudocylindrical equal-area projection designed in 2018, specifically created as a modern replacement for Robinson. It has a pleasing appearance and correctly represents relative areas. This is currently the recommended choice for world thematic maps.</p>
+<p><strong>Mollweide</strong> (ESRI:54009): Classic pseudocylindrical equal-area projection, widely used in scientific journals. Shapes are distorted toward the edges but areas are perfectly preserved. A solid choice.</p>
+<p><strong>Goode’s Homolosine</strong> (ESRI:54052): Interrupts the ocean to reduce continental distortion. Useful when land areas are the focus and visual interruptions in the ocean are acceptable.</p>
+<p><strong>Robinson</strong> (ESRI:54030): A compromise projection: it is <em>not</em> equal-area, but the area distortions are modest and it has a visually balanced appearance. Widely used by National Geographic and the USGS for general-purpose world maps. Acceptable for reference maps but not for thematic maps where area comparison matters.</p>
+<p><strong>Natural Earth II</strong> (ESRI:54078): A compromise projection designed by Tom Patterson (US National Park Service) with a pleasing rounded appearance at the poles. A practical and widely used alternative to Winkel Tripel for general-purpose world maps. Note that Winkel Tripel (ESRI:54042) is another popular choice, but it can cause geometry exceptions in certain software configurations, so Natural Earth II (ESRI:54078) is the safer option in R.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">make_ref_map</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">crs_string</span>, <span class="va">title</span>, <span class="va">subtitle</span> <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">data_proj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">crs_string</span><span class="op">)</span>   <span class="co"># pre-transform; avoids coord_sf reprojection issues</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data_proj</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#3d6b8c"</span>, color <span class="op">=</span> <span class="st">"white"</span>, linewidth <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>default_crs <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu">color_sym</span><span class="op">(</span><span class="va">title</span><span class="op">)</span>, subtitle <span class="op">=</span> <span class="fu">color_sym</span><span class="op">(</span><span class="va">subtitle</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>      plot.title    <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>      plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"grey40"</span>, size <span class="op">=</span> <span class="fl">8.5</span>,</span>
+<span>                                       margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">2</span>, b <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">make_ref_map</span><span class="op">(</span><span class="va">world</span>, <span class="st">"ESRI:54035"</span>, <span class="st">"Equal Earth"</span>,     <span class="st">"Equal-area"</span><span class="op">)</span>  <span class="co"># +proj=eqearth</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">make_ref_map</span><span class="op">(</span><span class="va">world</span>, <span class="st">"ESRI:54009"</span>, <span class="st">"Mollweide"</span>,       <span class="st">"Equal-area"</span><span class="op">)</span>  <span class="co"># +proj=moll</span></span>
+<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu">make_ref_map</span><span class="op">(</span><span class="va">world</span>, <span class="st">"ESRI:54030"</span>, <span class="st">"Robinson"</span>,        <span class="st">"Compromise"</span><span class="op">)</span>    <span class="co"># +proj=robin</span></span>
+<span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu">make_ref_map</span><span class="op">(</span><span class="va">world</span>, <span class="st">"ESRI:54078"</span>, <span class="st">"Natural Earth II"</span>,<span class="st">"Compromise"</span><span class="op">)</span>    <span class="co"># +proj=natearth2</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">p1</span> <span class="op">|</span> <span class="va">p2</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">p3</span> <span class="op">|</span> <span class="va">p4</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="3000"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="how-to-visually-verify-area-distortion-the-tissot-indicatrix" class="level3"><h3 class="anchored" data-anchor-id="how-to-visually-verify-area-distortion-the-tissot-indicatrix">How to visually verify area distortion: the Tissot indicatrix</h3>
+<p>A classic tool for visualizing projection distortion is Tissot’s indicatrix, a set of circles of identical size placed at regular intervals across the globe in the unprojected space. If the projection preserves area, all circles will have the same area on the map (though their shapes may differ). If the projection is conformal, all circles will remain circular (though sizes may differ).</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># generate Tissot indicatrix circles in WGS84</span></span>
+<span><span class="va">generate_tissot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">spacing</span> <span class="op">=</span> <span class="fl">30</span>, <span class="va">radius_deg</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">lons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">180</span>, <span class="fl">180</span>, by <span class="op">=</span> <span class="va">spacing</span><span class="op">)</span></span>
+<span>  <span class="va">lats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>,   <span class="fl">60</span>, by <span class="op">=</span> <span class="va">spacing</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>lon <span class="op">=</span> <span class="va">lons</span>, lat <span class="op">=</span> <span class="va">lats</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">circles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pmap.html">pmap</a></span><span class="op">(</span><span class="va">grid</span>, <span class="kw">function</span><span class="op">(</span><span class="va">lon</span>, <span class="va">lat</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="co"># approximate circle in geographic space</span></span>
+<span>    <span class="va">angles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span>, length.out <span class="op">=</span> <span class="fl">64</span><span class="op">)</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>    <span class="va">xs</span> <span class="op">&lt;-</span> <span class="va">lon</span> <span class="op">+</span> <span class="va">radius_deg</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="va">angles</span><span class="op">)</span></span>
+<span>    <span class="va">ys</span> <span class="op">&lt;-</span> <span class="va">lat</span> <span class="op">+</span> <span class="va">radius_deg</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="va">angles</span><span class="op">)</span></span>
+<span>    <span class="co"># clamp</span></span>
+<span>    <span class="va">xs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmax</a></span><span class="op">(</span><span class="op">-</span><span class="fl">179.9</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmin</a></span><span class="op">(</span><span class="fl">179.9</span>, <span class="va">xs</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="va">ys</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmax</a></span><span class="op">(</span><span class="op">-</span><span class="fl">89.9</span>,  <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmin</a></span><span class="op">(</span><span class="fl">89.9</span>,  <span class="va">ys</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">xs</span>, <span class="va">ys</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf.html">st_sf</a></span><span class="op">(</span>geometry <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span><span class="va">circles</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">tissot</span> <span class="op">&lt;-</span> <span class="fu">generate_tissot</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">graticule</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_graticule.html">st_graticule</a></span><span class="op">(</span>ndiscr <span class="op">=</span> <span class="fl">10000</span>, margin <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">make_tissot_map</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">world</span>, <span class="va">tissot</span>, <span class="va">crs_string</span>, <span class="va">title</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">world_proj</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">world</span>,  <span class="va">crs_string</span><span class="op">)</span></span>
+<span>  <span class="va">tissot_proj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">tissot</span>, <span class="va">crs_string</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">world_proj</span>,  fill <span class="op">=</span> <span class="st">"#dce8f0"</span>, color <span class="op">=</span> <span class="st">"grey70"</span>, linewidth <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tissot_proj</span>, fill <span class="op">=</span> <span class="st">"#d7362d"</span>, color <span class="op">=</span> <span class="cn">NA</span>, alpha <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>default_crs <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu">color_sym</span><span class="op">(</span><span class="va">title</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu">make_tissot_map</span><span class="op">(</span><span class="va">world</span>, <span class="va">tissot</span>, <span class="st">"EPSG:3395"</span>,   <span class="st">"Mercator (EPSG:3395) \u2717"</span><span class="op">)</span></span>
+<span><span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu">make_tissot_map</span><span class="op">(</span><span class="va">world</span>, <span class="va">tissot</span>, <span class="st">"ESRI:54035"</span>,  <span class="st">"Equal Earth (ESRI:54035) \u2713"</span><span class="op">)</span></span>
+<span><span class="va">t3</span> <span class="op">&lt;-</span> <span class="fu">make_tissot_map</span><span class="op">(</span><span class="va">world</span>, <span class="va">tissot</span>, <span class="st">"ESRI:54009"</span>,  <span class="st">"Mollweide (ESRI:54009) \u2713"</span><span class="op">)</span></span>
+<span><span class="va">t4</span> <span class="op">&lt;-</span> <span class="fu">make_tissot_map</span><span class="op">(</span><span class="va">world</span>, <span class="va">tissot</span>, <span class="st">"ESRI:54030"</span>,  <span class="st">"Robinson (ESRI:54030)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">t1</span> <span class="op">|</span> <span class="va">t2</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">t3</span> <span class="op">|</span> <span class="va">t4</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="3000"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The Mercator indicatrix makes the distortion at high latitudes unmistakable. On the equal-area projections, every red circle has the same area, which is exactly what we want for any thematic map.</p>
+</section><section id="regional-and-continental-maps" class="level3"><h3 class="anchored" data-anchor-id="regional-and-continental-maps">Regional and continental maps</h3>
+<p>For maps of continents or large sub-continental regions, the choice of projection depends on the shape of the region (east-west vs.&nbsp;north-south extent) and, again, the purpose.</p>
+<p><strong>Europe:</strong> The standard for European statistical maps, used by Eurostat, the EU, and most national mapping agencies, is the <strong>Lambert Azimuthal Equal Area</strong> (LAEA) centered on Europe, EPSG:3035. It is the projection you should use for any choropleth or spatial analysis of European data.</p>
+<p><strong>North America (continental USA):</strong> The <strong>Albers Equal Area Conic</strong> (EPSG:5070 or ESRI:102003) is the standard. It minimizes distortion across the broad east-west extent of the USA.</p>
+<p><strong>Spain / Iberian Peninsula:</strong> For maps of Spain or the Iberian Peninsula, the <strong>UTM zone 30N</strong> (EPSG:25830) is appropriate for large-scale work. For smaller scale or country-level maps a <strong>LCC</strong> or <strong>LAEA</strong> centered on Spain also works well.</p>
+<p><strong>Polar regions:</strong> Use an <strong>azimuthal equal-area</strong> (e.g., NSIDC Sea Ice Polar Stereographic, EPSG:3413 for the Arctic, EPSG:3976 for Antarctic) or a polar stereographic projection.</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># European countries from giscoR</span></span>
+<span><span class="va">europe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get_countries.html">gisco_get_countries</a></span><span class="op">(</span></span>
+<span>  region <span class="op">=</span> <span class="st">"Europe"</span>,</span>
+<span>  resolution <span class="op">=</span> <span class="st">"10"</span>,</span>
+<span>  year <span class="op">=</span> <span class="st">"2020"</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">CNTR_ID</span> <span class="op"><a href="https://rspatial.github.io/terra/reference/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GL"</span>, <span class="st">"SJ"</span>, <span class="st">"RU"</span><span class="op">)</span><span class="op">)</span>  <span class="op">|&gt;</span>  <span class="co"># remove Greenland, Svalbard, Russia</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="op">-</span><span class="fl">33</span>, xmax <span class="op">=</span> <span class="fl">50</span>, ymin <span class="op">=</span> <span class="fl">26</span>, ymax <span class="op">=</span> <span class="fl">75</span><span class="op">)</span> <span class="co"># remove French Guiana</span></span>
+<span></span>
+<span><span class="va">make_europe_map</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">crs_string</span>, <span class="va">title</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">data_proj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">crs_string</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data_proj</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#4a7fb5"</span>, color <span class="op">=</span> <span class="st">"white"</span>, linewidth <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>default_crs <span class="op">=</span> <span class="cn">NULL</span>, expand <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu">color_sym</span><span class="op">(</span><span class="va">title</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">11</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>      plot.title <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>                                    margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>b <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu">make_europe_map</span><span class="op">(</span><span class="va">europe</span>, <span class="fl">4326</span>,   <span class="st">"Geographic (EPSG:4326) \u2717"</span><span class="op">)</span></span>
+<span><span class="va">e2</span> <span class="op">&lt;-</span> <span class="fu">make_europe_map</span><span class="op">(</span><span class="va">europe</span>, <span class="fl">3857</span>,   <span class="st">"Web Mercator (EPSG:3857) \u2717"</span><span class="op">)</span></span>
+<span><span class="va">e3</span> <span class="op">&lt;-</span> <span class="fu">make_europe_map</span><span class="op">(</span><span class="va">europe</span>, <span class="fl">3035</span>,   <span class="st">"LAEA Europe (EPSG:3035) \u2713"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">e1</span> <span class="op">|</span> <span class="va">e2</span> <span class="op">|</span> <span class="va">e3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="3600"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The difference between Web Mercator and LAEA is particularly visible: Scandinavia appears oversized and the overall shape of Europe looks squashed under Mercator, while LAEA gives the correct, familiar shape that European institutions use.</p>
+</section><section id="hemispheric-and-globe-view-maps-the-orthographic-projection" class="level3"><h3 class="anchored" data-anchor-id="hemispheric-and-globe-view-maps-the-orthographic-projection">Hemispheric and “globe-view” maps: the Orthographic projection</h3>
+<p>The <strong>Orthographic</strong> projection (<code>+proj=ortho</code>) renders the Earth as if viewed from space, giving a hemisphere perspective that is visually compelling and immediately intuitive for a general audience. The compression toward the edges of the visible hemisphere is not a cartographic flaw in the traditional sense: it is an accurate consequence of perspective geometry, the same foreshortening you see in a photograph of a sphere. Because readers instinctively interpret it as a three-dimensional object, the compression is cognitively transparent in a way that Mercator’s area inflation is not. That said, orthographic is not suitable for any analysis where areas or distances are measured from the map directly, so use an equal-area or equidistant projection for that. The center of the visible hemisphere is controlled by <code>+lat_0</code> (latitude) and <code>+lon_0</code> (longitude). For a Europe-centered view:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ortho_crs</span> <span class="op">&lt;-</span> <span class="st">'+proj=ortho +lat_0=51 +lon_0=0.5 +x_0=0 +y_0=0 +R=6371000 +units=m +no_defs +type=crs'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Geometries must be clipped to the visible hemisphere before projecting
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is the main difficulty with the Orthographic projection. Any geometry that crosses the horizon (the boundary between the visible and hidden hemisphere) will produce incorrect or broken shapes after projection, because sf will attempt to project coordinates that are mathematically behind the globe, yielding nonsensical results.</p>
+<p>The standard solution is to intersect all vector data with a circle of Earth’s radius centred at the projection origin, in the orthographic CRS, before transforming:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ortho_crs</span> <span class="op">&lt;-</span> <span class="st">'+proj=ortho +lat_0=51 +lon_0=0.5 +x_0=0 +y_0=0 +R=6371000 +units=m +no_defs +type=crs'</span></span>
+<span></span>
+<span><span class="co"># 1. Build the visible hemisphere boundary (circle of Earth radius at origin)</span></span>
+<span><span class="va">hemisphere</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_point</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="va">ortho_crs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_buffer</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="fl">6371000</span><span class="op">)</span>  <span class="co"># Earth radius in metres</span></span>
+<span></span>
+<span><span class="co"># 2. Transform world to orthographic, then clip to the visible hemisphere</span></span>
+<span><span class="va">world_ortho</span> <span class="op">&lt;-</span> <span class="va">world</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="va">ortho_crs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">st_intersection</a></span><span class="op">(</span><span class="va">hemisphere</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. Same for graticules</span></span>
+<span><span class="va">graticule_ortho</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_graticule.html">st_graticule</a></span><span class="op">(</span>ndiscr <span class="op">=</span> <span class="fl">10000</span>, margin <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="va">ortho_crs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">st_intersection</a></span><span class="op">(</span><span class="va">hemisphere</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 4. The hemisphere circle also serves as the ocean/globe background</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hemisphere</span>, fill <span class="op">=</span> <span class="st">"#cce4f0"</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span>      <span class="co"># ocean</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">world_ortho</span>, fill <span class="op">=</span> <span class="st">"#3d6b8c"</span>, color <span class="op">=</span> <span class="st">"white"</span>, linewidth <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">graticule_ortho</span>, color <span class="op">=</span> <span class="st">"white"</span>, linewidth <span class="op">=</span> <span class="fl">0.1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="va">ortho_crs</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For <strong>raster data</strong> in orthographic projection, <code><a href="https://rspatial.github.io/terra/reference/project.html">terra::project()</a></code> handles the reprojection cleanly, but you should convert to a <code>data.frame</code> afterwards and use <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster()</a></code> rather than <code>geom_spatraster()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ras_ortho</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="va">ortho_crs</span><span class="op">)</span></span>
+<span><span class="va">ras_df</span>       <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">ras_ortho</span>, xy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section></section><section id="specifying-projections-in-r-with-sf-ggplot2-and-terra" class="level2"><h2 class="anchored" data-anchor-id="specifying-projections-in-r-with-sf-ggplot2-and-terra">Specifying projections in R with <code>sf</code>, <code>ggplot2</code>, and <code>terra</code>
+</h2>
+<p>In practice, working with projections in R is straightforward. Below are the most common patterns for both vector data (<a href="https://r-spatial.github.io/sf/">sf</a>) and raster data (<a href="https://rspatial.org/">terra</a>).</p>
+<section id="vector-data-with-sf-and-ggplot2" class="level3"><h3 class="anchored" data-anchor-id="vector-data-with-sf-and-ggplot2">Vector data with <code>sf</code> and <code>ggplot2</code>
+</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 1. Inspect the CRS of an sf object</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span>               <span class="co"># full CRS object (prints WKT2)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span><span class="op">$</span><span class="va">epsg</span>          <span class="co"># EPSG code as integer (NA if none)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span><span class="op">$</span><span class="va">Name</span>          <span class="co"># human-readable name</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span><span class="op">$</span><span class="va">wkt</span>           <span class="co"># WKT2 string  -  the authoritative representation</span></span>
+<span></span>
+<span><span class="co"># 2. Transform to a different CRS</span></span>
+<span><span class="va">my_sf_laea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">my_sf</span>, <span class="st">"EPSG:3035"</span><span class="op">)</span>    <span class="co"># EPSG code   -  preferred as code or string</span></span>
+<span><span class="va">my_sf_ee</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">my_sf</span>, <span class="st">"ESRI:54035"</span><span class="op">)</span>   <span class="co"># ESRI code   -  preferred for world projections</span></span>
+<span><span class="va">my_sf_laea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">my_sf</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span><span class="op">$</span><span class="va">wkt</span><span class="op">)</span>  <span class="co"># WKT2 string  -  portable/archival</span></span>
+<span></span>
+<span><span class="co"># 3. Set projection for display only in ggplot2 (data are not transformed)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span>   <span class="co"># LAEA Europe</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"ESRI:54035"</span><span class="op">)</span>  <span class="co"># Equal Earth</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"ESRI:54009"</span><span class="op">)</span>  <span class="co"># Mollweide</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"ESRI:54030"</span><span class="op">)</span>  <span class="co"># Robinson</span></span>
+<span></span>
+<span><span class="co"># 4. Obtain the WKT2 of any CRS from its EPSG code (useful for sharing/archiving)</span></span>
+<span><span class="va">wkt_laea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="st">"EPSG:3035"</span><span class="op">)</span><span class="op">$</span><span class="va">wkt</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">wkt_laea</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="raster-data-with-terra" class="level3"><h3 class="anchored" data-anchor-id="raster-data-with-terra">Raster data with <code>terra</code>
+</h3>
+<p>Projecting rasters requires resampling, every output cell must be filled by interpolating from the input grid. The choice of resampling method matters: use <code>"bilinear"</code> (or <code>"cubic"</code>) for continuous variables like temperature or elevation, and <code>"near"</code> (nearest neighbour) for categorical data like land cover classes.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 1. Inspect the CRS of a SpatRaster</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html">crs</a></span><span class="op">(</span><span class="va">my_raster</span><span class="op">)</span>                  <span class="co"># returns a WKT2 string</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html">crs</a></span><span class="op">(</span><span class="va">my_raster</span>, describe <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># compact human-readable summary</span></span>
+<span></span>
+<span><span class="co"># 2. Project using EPSG codes  -  preferred as string for standard CRS</span></span>
+<span><span class="va">r_laea</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"EPSG:3035"</span><span class="op">)</span>   <span class="co"># LAEA Europe</span></span>
+<span><span class="va">r_aea_us</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"EPSG:5070"</span><span class="op">)</span>   <span class="co"># Albers Equal Area (USA)</span></span>
+<span><span class="va">r_utm30</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"EPSG:25830"</span><span class="op">)</span>  <span class="co"># UTM zone 30N (Spain)</span></span>
+<span></span>
+<span><span class="co"># 3. Project using ESRI codes  -  preferred for world projections without EPSG</span></span>
+<span><span class="va">r_eqearth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"ESRI:54035"</span><span class="op">)</span> <span class="co"># Equal Earth</span></span>
+<span><span class="va">r_moll</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"ESRI:54009"</span><span class="op">)</span> <span class="co"># Mollweide</span></span>
+<span><span class="va">r_robin</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"ESRI:54030"</span><span class="op">)</span> <span class="co"># Robinson</span></span>
+<span></span>
+<span><span class="co"># 4. Project using a WKT2 string  -  the formal standard; use for archiving or</span></span>
+<span><span class="co">#    sharing CRS definitions, or when EPSG/ESRI codes are unavailable</span></span>
+<span><span class="va">wkt_laea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html">crs</a></span><span class="op">(</span><span class="st">"EPSG:3035"</span><span class="op">)</span>               <span class="co"># obtain WKT2 from an EPSG code</span></span>
+<span><span class="va">r_laea</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="va">wkt_laea</span><span class="op">)</span>   <span class="co"># project using that WKT2</span></span>
+<span></span>
+<span><span class="co"># 5. Project to match an existing raster or vector object</span></span>
+<span><span class="va">r_matched</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="va">ref_raster</span><span class="op">)</span>  <span class="co"># match CRS, extent and resolution</span></span>
+<span><span class="va">r_matched</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html">crs</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span><span class="op">)</span>  <span class="co"># match the CRS of an sf object</span></span>
+<span></span>
+<span><span class="co"># 6. Choose the resampling method explicitly (always do this consciously)</span></span>
+<span><span class="va">r_temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"EPSG:3035"</span>, method <span class="op">=</span> <span class="st">"bilinear"</span><span class="op">)</span> <span class="co"># continuous data</span></span>
+<span><span class="va">r_lc</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"EPSG:3035"</span>, method <span class="op">=</span> <span class="st">"near"</span><span class="op">)</span>     <span class="co"># categorical data</span></span>
+<span></span>
+<span><span class="co"># 7. Align two rasters to an identical grid</span></span>
+<span><span class="va">r_aligned</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="va">ref_raster</span>, method <span class="op">=</span> <span class="st">"bilinear"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span><code><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area()</a></code>, s2, and projections know what your engine is doing
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By default (sf &gt; 1.0), <code><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area()</a></code> uses the <strong>s2 spherical geometry engine</strong>, which computes geodesic area directly on WGS84 data no projection required and the result is correct:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span>           <span class="co"># default</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">my_sf_wgs84</span><span class="op">)</span>      <span class="co"># geodesic area, correct</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you have disabled s2 (<code>sf_use_s2(FALSE)</code>), the engine switches to planar GEOS geometry. In that case, <code><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area()</a></code> on WGS84 data gives <strong>wrong results</strong> (it treats degrees as metres). You must project to an equal-area CRS first:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">my_sf_wgs84</span><span class="op">)</span>                                <span class="co">#  wrong: planar on degrees</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">my_sf_wgs84</span>, <span class="st">"ESRI:54035"</span><span class="op">)</span><span class="op">)</span>    <span class="co">#  correct: planar on Equal Earth</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For raster data, <code><a href="https://rspatial.github.io/terra/reference/expanse.html">terra::expanse()</a></code> always computes geodesic cell area regardless of projection the safest option when the CRS setting is uncertain.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>How to specify a CRS in R: EPSG, ESRI, WKT2, and legacy PROJ strings
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are several ways to identify a coordinate reference system in R. Knowing the difference matters.</p>
+<p><strong>EPSG codes</strong> (<code>"EPSG:XXXX"</code> or just the integer) come from the EPSG Geodetic Parameter Dataset, maintained by the IOGP. They cover most standard geodetic CRS used in national and international mapping. Examples: <code>"EPSG:4326"</code> (WGS84), <code>"EPSG:3035"</code> (LAEA Europe), <code>"EPSG:3857"</code> (Web Mercator).</p>
+<p><strong>ESRI codes</strong> (<code>"ESRI:XXXXX"</code>) are identifiers from Esri’s projection engine, covering many world projections not registered in EPSG, such as Equal Earth (<code>ESRI:54035</code>), Robinson (<code>ESRI:54030</code>), and Mollweide (<code>ESRI:54009</code>). Both <code>sf</code> and <code>terra</code> resolve these codes via the PROJ library.</p>
+<p><strong>WKT2</strong> (ISO 19162:2019) is the current formal standard for encoding CRS definitions as portable, human-readable text. It replaced the older WKT1 format and the legacy PROJ string format. Since PROJ 6 (2019), all major geospatial libraries, including sf, terra, GDAL, and QGIS, use WKT2 internally. When sharing or archiving CRS definitions, WKT2 is the recommended format.</p>
+<p><strong>Legacy PROJ strings</strong> (e.g., <code>+proj=laea +lat_0=52 +lon_0=10 +ellps=GRS80</code>) were the de facto standard before PROJ 6. They are still accepted by most software for backwards compatibility, but are deprecated: they can silently lose datum parameters compared to WKT2. Avoid them in new code.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Obtain the WKT2 of any CRS and inspect it</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="st">"EPSG:3035"</span><span class="op">)</span><span class="op">$</span><span class="va">wkt</span><span class="op">)</span>   <span class="co"># sf</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html">crs</a></span><span class="op">(</span><span class="st">"EPSG:3035"</span><span class="op">)</span><span class="op">)</span>           <span class="co"># terra</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Raster vs.&nbsp;vector: projection in ggplot2 is not the same
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is one of the most common sources of confusion when moving between vector and raster workflows.</p>
+<p><strong>Vector data (<code>sf</code>)</strong> can be projected <em>on the fly</em> inside <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf()</a></code>. When you write:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_sf</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"EPSG:3035"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ggplot2 reprojects the geometries during rendering. The underlying <code>sf</code> object is never modified; the transformation happens only for display. This is convenient for quick exploration.</p>
+<p><strong>Raster data (<code>terra</code>)</strong> does <strong>not</strong> support on-the-fly projection in ggplot2. Functions like <code>geom_spatraster()</code> (from the <a href="https://dieghernan.github.io/tidyterra/">tidyterra</a> package) draw the raster in its native CRS. If you need a different projection, you must explicitly call <code><a href="https://rspatial.github.io/terra/reference/project.html">terra::project()</a></code> before plotting:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Wrong: the raster stays in its original CRS regardless of coord_sf(crs = ...)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_spatraster</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_raster</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"EPSG:3035"</span><span class="op">)</span>   <span class="co"># has no effect on the raster</span></span>
+<span></span>
+<span><span class="co"># Correct: project the raster first, then plot</span></span>
+<span><span class="va">my_raster_proj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"EPSG:3035"</span>, method <span class="op">=</span> <span class="st">"bilinear"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_spatraster</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_raster_proj</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>default_crs <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>The <code>default_crs</code> parameter in <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf()</a></code></strong> controls how ggplot2 interprets the coordinate axes when computing plot limits. By default, ggplot2 assumes unprojected geographic data (WGS84, EPSG:4326), so it back-transforms axis limits to longitude/latitude before applying them. This works fine when data are in geographic coordinates, but causes errors or wrong extents when the data have already been projected to a Cartesian CRS (e.g., EPSG:3035 in metres).</p>
+<p>Setting <code>default_crs = NULL</code> tells ggplot2 to treat the coordinates as plain Cartesian values and skip any back-transformation of axis limits. <strong>Use <code>default_crs = NULL</code> whenever your data are pre-projected</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Data already in EPSG:3035 (metres) - use default_crs = NULL</span></span>
+<span><span class="va">my_sf_laea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">my_sf</span>, <span class="st">"EPSG:3035"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_sf_laea</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>default_crs <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Equivalently, for rasters already projected:</span></span>
+<span><span class="va">my_raster_proj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html">project</a></span><span class="op">(</span><span class="va">my_raster</span>, <span class="st">"EPSG:3035"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_spatraster</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_raster_proj</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>default_crs <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In summary:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 35%">
+<col style="width: 35%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Data type</th>
+<th style="text-align: center;">On-the-fly projection via <code>coord_sf(crs = ...)</code>?</th>
+<th style="text-align: center;">Pre-project before plotting?</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Vector (<code>sf</code>)</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Optional (recommended for complex CRS)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Raster (<code>terra</code>)</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;"><strong>Always required</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section></section><section id="quick-reference-projection-codes-for-common-use-cases" class="level2"><h2 class="anchored" data-anchor-id="quick-reference-projection-codes-for-common-use-cases">Quick-reference: projection codes for common use cases</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Use case</th>
+<th style="text-align: left;">Projection</th>
+<th style="text-align: left;">Code</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">World thematic maps (choropleth, density)</td>
+<td style="text-align: left;">Equal Earth</td>
+<td style="text-align: left;"><code>ESRI:54035</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">World thematic maps (alternative)</td>
+<td style="text-align: left;">Mollweide</td>
+<td style="text-align: left;"><code>ESRI:54009</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">World reference/atlas maps</td>
+<td style="text-align: left;">Robinson</td>
+<td style="text-align: left;"><code>ESRI:54030</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">World reference/atlas maps (alternative)</td>
+<td style="text-align: left;">Natural Earth II</td>
+<td style="text-align: left;"><code>ESRI:54078</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">European thematic/statistical maps</td>
+<td style="text-align: left;">LAEA Europe</td>
+<td style="text-align: left;"><code>EPSG:3035</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">USA thematic/statistical maps</td>
+<td style="text-align: left;">Albers Equal Area (USA)</td>
+<td style="text-align: left;"><code>EPSG:5070</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Iberian Peninsula / Spain</td>
+<td style="text-align: left;">UTM zone 30N</td>
+<td style="text-align: left;"><code>EPSG:25830</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Arctic maps</td>
+<td style="text-align: left;">NSIDC Sea Ice Polar Stereographic N</td>
+<td style="text-align: left;"><code>EPSG:3413</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Antarctic maps</td>
+<td style="text-align: left;">NSIDC Sea Ice Polar Stereographic S</td>
+<td style="text-align: left;"><code>EPSG:3976</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Web/tile maps (navigation, base layers)</td>
+<td style="text-align: left;">Web Mercator</td>
+<td style="text-align: left;"><code>EPSG:3857</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Navigation charts</td>
+<td style="text-align: left;">Mercator</td>
+<td style="text-align: left;"><code>EPSG:3395</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">WGS84 geographic CRS (data storage/exchange)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;"><code>EPSG:4326</code></td>
+</tr>
+</tbody>
+</table></section><section id="checklist-common-projection-mistakes-in-scientific-publications" class="level2"><h2 class="anchored" data-anchor-id="checklist-common-projection-mistakes-in-scientific-publications">Checklist: common projection mistakes in scientific publications</h2>
+<p>Before submitting a map to a journal or report, run through this checklist:</p>
+<ol type="1">
+<li><p><strong>Does the map use Mercator for a thematic purpose?</strong> Mercator distorts area severely at high latitudes. Replace with an equal-area projection.</p></li>
+<li><p><strong>Are geographic coordinates (EPSG:4326) used as a projection?</strong> Treating degrees as Cartesian is technically the equirectangular projection, which is neither equal-area nor conformal. Reproject to a suitable CRS.</p></li>
+<li><p><strong>Is the projection appropriate for the region?</strong> A world projection applied to a continental map (or vice versa) introduces unnecessary distortion. Match the projection to the spatial extent.</p></li>
+<li><p><strong>For choropleth maps: is the projection equal-area?</strong> Area-dependent visualisations (choropleth, dot density, proportional symbols) require an equal-area projection. Conformal or compromise projections will mislead the reader.</p></li>
+<li><p><strong>For raster data: was the raster explicitly projected before analysis?</strong> Analysing or visualising raster data in an inappropriate CRS leads to incorrect spatial statistics. Always project explicitly with <code><a href="https://rspatial.github.io/terra/reference/project.html">terra::project()</a></code>.</p></li>
+<li><p><strong>Is <code><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area()</a></code> being called on WGS84 data with s2 disabled?</strong> If <code>sf_use_s2(FALSE)</code>, area calculations on unprojected data are wrong. Project to an equal-area CRS first.</p></li>
+</ol>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-royé2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Royé, Dominic. 2026. <span>“Map Projections: A Practical Guide to Common
+Mistakes and How to Fix Them.”</span> May 3. <a href="https://dominicroye.github.io/blog/map-projections/">https://dominicroye.github.io/blog/map-projections/</a>.
+</div></div></section></div></main><!-- /main --><div id="buymeacoffee" style="text-align: center; ">
+    <a href="https://www.buymeacoffee.com/drxeo" target="_blank" data-original-href="https://www.buymeacoffee.com/drxeo"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+</div>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dominicroye\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2018-2025 Dominic Royé ∙ Made with <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a class="link-dark me-1" href="https://bsky.app/profile/drxeo.eu" title="Bluesky" target="_blank" rel="noopener"> <i class="fa-brands fa-bluesky" aria-label="bluesky"></i></a> <a class="link-dark me-1" href="https://www.linkedin.com/in/dominicroye/" title="LinkedIn" target="_blank" rel="noopener"> <i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a> <a class="link-dark me-1" href="https://github.com/dominicroye/" title="github" target="_blank" rel="noopener"> <i class="fa-brands fa-github" aria-label="github"></i></a> <a class="link-dark me-1" href="https://orcid.org/0000-0002-5516-6396" title="orcid" target="_blank" rel="noopener"> <i class="ai  ai-orcid" aria-label="orcid"></i></a> <a class="link-dark me-1" href="https://scholar.google.es/citations?user=EoYa8jUAAAAJ&amp;hl=es" title="Google Scholar" target="_blank" rel="noopener"> <i class="ai  ai-google-scholar" aria-label="google-scholar"></i></a> <a class="link-dark me-1" href="https://www.researchgate.net/profile/Dominic-Roye?ev=hdr_xprf" title="github" target="_blank" rel="noopener"><i class="fa-brands fa-researchgate" aria-label="researchgate"></i></a></p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item">
+    <a class="nav-link" href="../../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+</body></html>

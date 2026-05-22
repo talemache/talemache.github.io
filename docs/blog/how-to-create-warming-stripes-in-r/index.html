@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -100,12 +100,13 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 </script>
 <meta name="twitter:title" content="How to create ‘Warming Stripes’ in R">
 <meta name="twitter:description" content="Researcher in climate science at MBG-CSIC">
-<meta name="twitter:image" content="https://dominicroye.github.io/blog/how-to-create-warming-stripes-in-r/featured.png">
+<meta name="twitter:image" content="https://dominicroye.github.io/blog/how-to-create-warming-stripes-in-r/GLOBE---1850-2023-MO.png">
 <meta name="twitter:creator" content="@drxeo.eu">
 <meta name="twitter:site" content="@drxeo.eu">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="696">
-<meta name="twitter:image-width" content="3431">
+<meta name="twitter:image:alt" content="https://showyourstripes.info/">
+<meta name="twitter:image-height" content="2126">
+<meta name="twitter:image-width" content="3780">
 </head>
 <body class="nav-fixed quarto-light">
 
@@ -160,7 +161,7 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
+<main class="content" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title"> 
 --><!-- <header id="title-block-header" class="quarto-title-block default page-columns"> --><!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> --><header id="title-block-header" class="quarto-title-block default page-columns"><div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
@@ -204,12 +205,9 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 
 
 
-</header>
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><p>This year, the so-called <em>warming stripes</em>, which were created by the scientist <a href="https://x.com/ed_hawkins">Ed Hawkins</a> of the University of Reading, became very famous all over the world. These graphs represent and communicate climate change in a very illustrative and effective way.</p>
+</header><p>This year, the so-called <em>warming stripes</em>, which were created by the scientist <a href="https://x.com/ed_hawkins">Ed Hawkins</a> of the University of Reading, became very famous all over the world. These graphs represent and communicate climate change in a very illustrative and effective way.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="GLOBE---1850-2023-MO.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="https://showyourstripes.info/"><img src="GLOBE---1850-2023-MO.png" class="img-fluid figure-img" alt="https://showyourstripes.info/"></a></p>
+<figure class="figure"><p><a href="GLOBE---1850-2023-MO.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="https://showyourstripes.info/"><img src="GLOBE---1850-2023-MO.png" class="img-fluid figure-img" alt="https://showyourstripes.info/"></a></p>
 <figcaption>https://showyourstripes.info/</figcaption></figure>
 </div>
 <p>In this post I will show how you can create these strips in R with the <code>ggplot2</code> library. Although I must say that there are many ways in R that can lead us to the same result or to a similar one, even within <code>ggplot2</code>.</p>
@@ -291,7 +289,7 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_strip</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="img/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="img/figure-html/unnamed-chunk-5-1.png" class="img-fluid"></a></p>
+<p><a href="img/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="img/figure-html/unnamed-chunk-5-1.png" class="img-fluid"></a></p>
 <p>In case we want to get only the strips, we can use <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void()</a></code> and the argument <code>show.legend = FALSE</code> in <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile()</a></code> to remove all style elements. We can also change the color for the <code>NA</code> values, including the argument <code>na.value = “gray70”</code> in the <code><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn()</a></code> function.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
@@ -304,7 +302,7 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="img/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="img/figure-html/unnamed-chunk-6-1.png" class="img-fluid"></a></p>
+<p><a href="img/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="img/figure-html/unnamed-chunk-6-1.png" class="img-fluid"></a></p>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-royé2018" class="csl-entry quarto-appendix-citeas" role="listitem">

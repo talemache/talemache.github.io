@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -151,7 +151,33 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a>
+  <ul class="collapse">
+<li>
+<a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data">Preparing the data</a>
+  <ul class="collapse">
+<li><a href="#step-1-import-the-data" id="toc-step-1-import-the-data" class="nav-link" data-scroll-target="#step-1-import-the-data">Step 1: import the data</a></li>
+  <li><a href="#step-2-preparing-the-data" id="toc-step-2-preparing-the-data" class="nav-link" data-scroll-target="#step-2-preparing-the-data">Step 2: preparing the data</a></li>
+  <li><a href="#step-3-estimate-winter-anomalies" id="toc-step-3-estimate-winter-anomalies" class="nav-link" data-scroll-target="#step-3-estimate-winter-anomalies">Step 3: estimate winter anomalies</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#creating-the-graph" id="toc-creating-the-graph" class="nav-link" data-scroll-target="#creating-the-graph">Creating the graph</a>
+  <ul class="collapse">
+<li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
+  <li><a href="#part-4" id="toc-part-4" class="nav-link" data-scroll-target="#part-4">Part 4</a></li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
@@ -199,10 +225,8 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 
 
 
-</header>
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><p>When we visualize precipitation and temperature anomalies, we simply use time series as bar graph indicating negative and positive values in red and blue. However, in order to have a better overview we need both anomalies in a single graph. In this way we could more easly answer the question of whether a particular season or month was dry-warm or wet-cold, and even compare these anomalies in the context of previous years.</p>
+</header><p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
+<p>When we visualize precipitation and temperature anomalies, we simply use time series as bar graph indicating negative and positive values in red and blue. However, in order to have a better overview we need both anomalies in a single graph. In this way we could more easly answer the question of whether a particular season or month was dry-warm or wet-cold, and even compare these anomalies in the context of previous years.</p>
 <section id="packages" class="level1 page-columns page-full"><h1>Packages</h1>
 <p>In this post we will use the following packages:</p>
 <table class="caption-top table">
@@ -244,12 +268,12 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 </div>
 </section><section id="step-2-preparing-the-data" class="level3"><h3 class="anchored" data-anchor-id="step-2-preparing-the-data">Step 2: preparing the data</h3>
 <p>In the second step we prepare the data to calculate the anomalies. To do this, we create three new columns: the month, the year, and the season of the year. Since our objective is to analyse winter anomalies, we cannot use the calendar year, because winter includes the month of December of one year and the months of January and February of the following. The concept is similar to the hydrological year in which it starts on October 1.</p>
-<p>We will use many functions of the package collection <a href="https://www.tidyverse.org/"><code>tidyverse</code></a>. The <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function helps to add new columns or change existing ones. To define the seasons, we use the <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> function from the dplyr package, which has many advantages compared to a chain of <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>. In <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> we use two-side formulas, on the one hand the condition and on the other the action when that condition is met. A two-sided formula in R consists of the operator <code>~</code>. The binary operator <code>%in%</code> allows us to filter several values in a greater set.</p>
+<p>We will use many functions of the package collection <a href="https://www.tidyverse.org/"><code>tidyverse</code></a>. The <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function helps to add new columns or change existing ones. To define the seasons, we use the <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> function from the dplyr package, which has many advantages compared to a chain of <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>. In <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> we use two-side formulas, on the one hand the condition and on the other the action when that condition is met. A two-sided formula in R consists of the operator <code>~</code>. The binary operator <code>%in%</code> allows us to filter several values in a greater set.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">data</span>,</span>
 <span>  winter_yr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">==</span> <span class="fl">12</span>, <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">+</span><span class="fl">1</span>, <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
-<span>  season <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>  season <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
 <span>    <span class="va">month</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Winter"</span>,</span>
 <span>    <span class="va">month</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fl">3</span><span class="op">:</span><span class="fl">5</span> <span class="op">~</span> <span class="st">"Spring"</span>,</span>
 <span>    <span class="va">month</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fl">6</span><span class="op">:</span><span class="fl">8</span> <span class="op">~</span> <span class="st">"Summer"</span>,</span>
@@ -280,7 +304,7 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 <span>  ta_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ta</span><span class="op">[</span><span class="va">winter_yr</span> <span class="op">&lt;=</span> <span class="fl">2010</span><span class="op">]</span><span class="op">)</span>,</span>
 <span>  pr_anom <span class="op">=</span> <span class="op">(</span><span class="va">pr</span> <span class="op">*</span> <span class="fl">100</span> <span class="op">/</span> <span class="va">pr_mean</span><span class="op">)</span> <span class="op">-</span> <span class="fl">100</span>,</span>
 <span>  ta_anom <span class="op">=</span> <span class="va">ta</span> <span class="op">-</span> <span class="va">ta_mean</span>,</span>
-<span>  labyr <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>  labyr <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
 <span>    <span class="va">pr_anom</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">10</span> <span class="op">&amp;</span> <span class="va">ta_anom</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">.5</span> <span class="op">~</span> <span class="va">winter_yr</span>,</span>
 <span>    <span class="va">pr_anom</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">10</span> <span class="op">&amp;</span> <span class="va">ta_anom</span> <span class="op">&gt;</span> <span class="fl">.5</span> <span class="op">~</span> <span class="va">winter_yr</span>,</span>
 <span>    <span class="va">pr_anom</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">ta_anom</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">.5</span> <span class="op">~</span> <span class="va">winter_yr</span>,</span>
@@ -386,7 +410,7 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 <span></span>
 <span><span class="va">g3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="img/figure-html/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="img/figure-html/unnamed-chunk-11-1.png" class="img-fluid"></a></p>
+<p>![](img/figure-html/unn</p>
 
 
 </section></section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-royé2020" class="csl-entry quarto-appendix-citeas" role="listitem">

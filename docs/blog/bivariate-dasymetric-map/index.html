@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -151,7 +151,32 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#initial-considerations" id="toc-initial-considerations" class="nav-link active" data-scroll-target="#initial-considerations">Initial considerations</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li>
+<a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
+  <li><a href="#land-uses" id="toc-land-uses" class="nav-link" data-scroll-target="#land-uses">Land uses</a></li>
+  <li><a href="#income-data-and-gini-index" id="toc-income-data-and-gini-index" class="nav-link" data-scroll-target="#income-data-and-gini-index">Income data and Gini index</a></li>
+  <li><a href="#bivariate-variable" id="toc-bivariate-variable" class="nav-link" data-scroll-target="#bivariate-variable">Bivariate variable</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#map-building" id="toc-map-building" class="nav-link" data-scroll-target="#map-building">Map building</a>
+  <ul class="collapse">
+<li><a href="#legend-and-font" id="toc-legend-and-font" class="nav-link" data-scroll-target="#legend-and-font">Legend and font</a></li>
+  <li><a href="#dasymetric-map" id="toc-dasymetric-map" class="nav-link" data-scroll-target="#dasymetric-map">Dasymetric map</a></li>
+  <li><a href="#choropleth-map" id="toc-choropleth-map" class="nav-link" data-scroll-target="#choropleth-map">Choropleth map</a></li>
+  <li><a href="#merge-both-maps" id="toc-merge-both-maps" class="nav-link" data-scroll-target="#merge-both-maps">Merge both maps</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
@@ -201,10 +226,8 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 
 
 
-</header>
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><section id="initial-considerations" class="level1"><h1>Initial considerations</h1>
+</header><section id="initial-considerations" class="level1"><h1>Initial considerations</h1>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
 <p>A disadvantage of choropleth maps is that they tend to distort the relationship between the true underlying geography and the represented variable. It is because the administrative divisions do not usually coincide with the geographical reality where people live. Besides, large areas appear to have a weight that they do not really have because of sparsely populated regions. To better reflect reality, more realistic population distributions are used, such as land use. With Geographic Information Systems techniques, it is possible to redistribute the variable of interest as a function of a variable with a smaller spatial unit.</p>
 <p>With point data, the redistribution process is simply clipping points with population based on land use, usually classified as urban. We could also crop and mask with land use polygons when we have a vectorial polygon layer, but an interesting alternative is the same data in raster format. We will see how we can make a dasymetric map using raster data with a resolution of 100 m. This post will use data from census sections of the median income and the Gini index for Spain. We will make a dasymetric and bivariate map, representing both variables with two ranges of colours on the same map.</p>
 </section><section id="packages" class="level1"><h1>Packages</h1>
@@ -449,7 +472,7 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 <span><span class="co"># final map</span></span>
 <span><span class="va">p</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="img/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="img/figure-html/unnamed-chunk-15-1.png" class="img-fluid"></a></p>
+<p>![](img/figure-html/unn</p>
 
 
 </section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-royé2021" class="csl-entry quarto-appendix-citeas" role="listitem">

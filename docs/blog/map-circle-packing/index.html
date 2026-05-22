@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -169,10 +169,27 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#dorling-diagram" id="toc-dorling-diagram" class="nav-link" data-scroll-target="#dorling-diagram">Dorling diagram</a></li>
+  <li><a href="#creation-of-grouped-circles" id="toc-creation-of-grouped-circles" class="nav-link" data-scroll-target="#creation-of-grouped-circles">Creation of grouped circles</a></li>
+  <li><a href="#map-construction" id="toc-map-construction" class="nav-link" data-scroll-target="#map-construction">Map construction</a></li>
+  <li><a href="#legend" id="toc-legend" class="nav-link" data-scroll-target="#legend">Legend</a></li>
+  <li><a href="#canary-islands" id="toc-canary-islands" class="nav-link" data-scroll-target="#canary-islands">Canary Islands</a></li>
+  <li><a href="#spain" id="toc-spain" class="nav-link" data-scroll-target="#spain">Spain</a></li>
+  <li><a href="#interactive-version" id="toc-interactive-version" class="nav-link" data-scroll-target="#interactive-version">Interactive version</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html -->
 <!-- 
@@ -228,10 +245,8 @@ gtag('config', 'G-NK2N7F46NB', { 'anonymize_ip': true});
 </header>
 
 
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><p>In my first post of 2024, which unfortunately has not been possible before April, I will explain how we can group in the same location several proportional circles. In 2022 I was looking for how to represent the number of heat wave days according to the degree of severity in Spain. I found the solution using the circle packing which is also used in the Dorling cartogram.</p>
+<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
+<p>In my first post of 2024, which unfortunately has not been possible before April, I will explain how we can group in the same location several proportional circles. In 2022 I was looking for how to represent the number of heat wave days according to the degree of severity in Spain. I found the solution using the circle packing which is also used in the Dorling cartogram.</p>
 <section id="packages" class="level1">
 <h1>Packages</h1>
 <table class="caption-top table">

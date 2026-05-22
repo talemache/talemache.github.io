@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.12">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Dominic Roye">
+<meta name="author" content="Dominic Royé">
 <meta name="dcterms.date" content="2025-01-05">
 <title>Always normalize your data – Dr Dominic Royé</title>
 <style>
@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -176,10 +176,18 @@ window.Quarto = {
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
+<main class="content" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title"> 
 --><!-- <header id="title-block-header" class="quarto-title-block default page-columns"> --><!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> --><header id="title-block-header" class="quarto-title-block default page-columns"><div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
@@ -202,7 +210,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Dominic Roye </p>
+             <p>Dominic Royé </p>
           </div>
   </div>
     
@@ -219,10 +227,8 @@ window.Quarto = {
 
 
 
-</header>
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><p>I recently came across a map from the National Atlas of Spain showing the number of libraries by municipality. However, one thing directly caught my attention. There’s a saying that many maps show only the population, and this seems to be the case here. The map does not provide any remarkable information about the distribution of libraries; it merely shows where the most people live. It’s a very common pitfall. There are many phenomena that depend on population. It can be assumed that the number of libraries largely depends on the number of inhabitants in each municipality. Therefore, we see cities like Madrid, Barcelona, Seville, Valencia, and many provincial capitals with a higher number of libraries.</p>
+</header><p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
+<p>I recently came across a map from the National Atlas of Spain showing the number of libraries by municipality. However, one thing directly caught my attention. There’s a saying that many maps show only the population, and this seems to be the case here. The map does not provide any remarkable information about the distribution of libraries; it merely shows where the most people live. It’s a very common pitfall. There are many phenomena that depend on population. It can be assumed that the number of libraries largely depends on the number of inhabitants in each municipality. Therefore, we see cities like Madrid, Barcelona, Seville, Valencia, and many provincial capitals with a higher number of libraries.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="1280px-Espana_Bibliotecas-por-municipio_2023_mapa_19068_spa.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Map of the Spanish National Atlas"><img src="1280px-Espana_Bibliotecas-por-municipio_2023_mapa_19068_spa.jpg" class="img-fluid figure-img" alt="Map of the Spanish National Atlas"></a></p>
 <figcaption>Map of the Spanish National Atlas</figcaption></figure>
@@ -417,9 +423,9 @@ window.Quarto = {
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 <ol>
-<li id="fn1"><p>Include also population data.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-roye2025" class="csl-entry quarto-appendix-citeas" role="listitem">
-Roye, Dominic. 2025. <span>“Always Normalize Your Data.”</span> January
+<li id="fn1"><p>Includ<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-royé2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Royé, Dominic. 2025. <span>“Always Normalize Your Data.”</span> January
 5, 2025. <a href="https://dominicroye.github.io/blog/always-normalize-your-data/">https://dominicroye.github.io/blog/always-normalize-your-data/</a>.
 </div></div></section></div></main><!-- /main --><div id="buymeacoffee" style="text-align: center; ">
     <a href="https://www.buymeacoffee.com/drxeo" target="_blank" data-original-href="https://www.buymeacoffee.com/drxeo"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>

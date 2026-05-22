@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fd2209f8f7f5c037cd60b1325f8cc3d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-81759bfceaa241ed514e8c3c2c4ac429.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
@@ -176,7 +176,17 @@ window.Quarto = {
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#option-set-1" id="toc-option-set-1" class="nav-link" data-scroll-target="#option-set-1">Option Set 1</a></li>
+  <li><a href="#option-set-2" id="toc-option-set-2" class="nav-link" data-scroll-target="#option-set-2">Option Set 2</a></li>
+  <li><a href="#option-set-3" id="toc-option-set-3" class="nav-link" data-scroll-target="#option-set-3">Option Set 3</a></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts">Final Thoughts</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
@@ -220,10 +230,8 @@ window.Quarto = {
 
 
 
-</header>
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="img-fluid"></a></p>
-</div></div><p>I’ve wanted to write a post for a while about a graph that the Spanish Ministry for Ecological Transition publishes every month, summarizing the average monthly temperature in Spain. If we look closely, there is a misuse of the geometry type to present the temperature variable. In this specific case, columns have always a baseline at 0. The issue here is that 0 in degrees Celsius doesn’t represent an absolute zero or a meaningful starting point for comparison of magnitudes.</p>
+</header><p><a href="featured.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="featured.png" class="featured-top img-fluid"></a></p>
+<p>I’ve wanted to write a post for a while about a graph that the Spanish Ministry for Ecological Transition publishes every month, summarizing the average monthly temperature in Spain. If we look closely, there is a misuse of the geometry type to present the temperature variable. In this specific case, columns have always a baseline at 0. The issue here is that 0 in degrees Celsius doesn’t represent an absolute zero or a meaningful starting point for comparison of magnitudes.</p>
 <p>Why column charts are inappropriate for temperature? Well, column charts are used to show magnitude, with height being the visual variable used for encoding, and the zero-baseline is essential. They are typically used for ratio scale or absolute quantity data (e.g., population, sales, frequency counts). The height of the column is directly proportional to the value, allowing for easy, accurate comparison of ratios (e.g., one bar being twice as tall means the value is twice as large). Temperature scales like Celsius (<span class="math inline">\(^{\circ}C\)</span>) and Fahrenheit (<span class="math inline">\(^{\circ}F\)</span>) are interval scales. The zero point is arbitrary (it doesn’t mean “no temperature” or “absence of heat”), and although the <span class="math inline">\(0^{\circ}C\)</span> case is the freezing point, it is still inadequate. Furthermore, when using the zero-baseline for temperatures, the visual representation can be misleading, visually distorting the variability and difference between months and reducing it.</p>
 <p>Moreover, there is a visual inconsistency when columns are used to display the temperature for a specific year (such as 2025) while lines are simultaneously employed to represent the temperature of previous years (such as 2024) or the normal reference period. This mixing of chart types for the same kind of data (temperature over time) hinders direct comparison and can confuse the reader about which magnitude is being emphasized. Additionally, this increases cognitive load, as the reader must first identify the midpoint of the line and then mentally compare its position with the height of the column, adding an extra step and reducing the clarity of the message.</p>
 <p>So, what alternatives can we propose? Let’s not forget that <strong>our visualization is conditioned by its objective and also by the audience</strong>.</p>
@@ -661,7 +669,7 @@ Important
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">norm_p1</span>, by <span class="op">=</span> <span class="st">"mo"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    anom <span class="op">=</span> <span class="va">tmed</span> <span class="op">-</span> <span class="va">tmed_norm</span>,</span>
-<span>    anom <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">anom</span> <span class="op">&gt;</span> <span class="fl">3.5</span> <span class="op">~</span> <span class="fl">3.5</span>,</span>
+<span>    anom <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span><span class="va">anom</span> <span class="op">&gt;</span> <span class="fl">3.5</span> <span class="op">~</span> <span class="fl">3.5</span>,</span>
 <span>                     <span class="va">anom</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">3.5</span> <span class="op">~</span> <span class="op">-</span><span class="fl">3.5</span>,</span>
 <span>                     <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">anom</span><span class="op">)</span>,</span>
 <span>    yr   <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">yrmo</span><span class="op">)</span></span>
@@ -769,7 +777,7 @@ Tip
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_quasirandom.html">geom_quasirandom</a></span><span class="op">(</span></span>
-<span>    data <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">tmed_esp</span>, dummy <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">tmed_esp</span>, dummy <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
 <span>      <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">yrmo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2025</span> <span class="op">~</span> <span class="st">"2025"</span>,</span>
 <span>      <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">yrmo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2024</span> <span class="op">~</span> <span class="st">"2024"</span>,</span>
 <span>      <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"otros"</span></span>
@@ -926,7 +934,7 @@ Tip
 </div>
 </div>
 </section><section id="final-thoughts" class="level2"><h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
-<p>There is no such thing as a perfect visualization. Each of the nine examples comes with its own strengths and weaknesses, and their effectiveness depends largely on the purpose and the audience. I also believe we should not be afraid to use slightly more complex charts or to present data that is inherently complex. Sometimes, embracing complexity is the only way to convey the full story behind the numbers.</p>
+<p>There is no such thing as a perfect visualization. Each of the nine examples comes with its own strengths and weaknesses, and their effectiveness depends largely on the purpose and the audience. I also believe we should not be afraid to use slightly more complex charts or to present data that is inherently complex. Sometimes, embracing complexity is the only way to convey the full story</p>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-royé2025" class="csl-entry quarto-appendix-citeas" role="listitem">
