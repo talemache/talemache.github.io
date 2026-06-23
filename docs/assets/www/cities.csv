@@ -1,0 +1,61 @@
+name,province,type,lat,lon,population,note
+A Coruna,A Coruna,capital,43.3623,-8.4115,245000,
+Vitoria-Gasteiz,Alava,capital,42.8467,-2.6716,253000,
+Albacete,Albacete,capital,38.9943,-1.8585,173000,
+Alicante,Alicante,capital,38.3452,-0.481,337000,
+Almeria,Almeria,capital,36.8381,-2.4597,200000,
+Oviedo,Asturias,capital,43.3603,-5.8448,219000,
+Avila,Avila,capital,40.6566,-4.6818,57000,
+Badajoz,Badajoz,capital,38.8794,-6.9707,150000,
+Palma de Mallorca,Baleares,capital,39.5696,2.6502,419000,
+Barcelona,Barcelona,capital,41.3874,2.1686,1620000,
+Burgos,Burgos,capital,42.3439,-3.6969,175000,
+Caceres,Caceres,capital,39.4753,-6.3724,96000,
+Cadiz,Cadiz,capital,36.5298,-6.2926,113000,
+Santander,Cantabria,capital,43.4623,-3.8099,172000,
+Castellon de la Plana,Castellon,capital,39.9864,-0.0513,172000,
+Ciudad Real,Ciudad Real,capital,38.9848,-3.9275,75000,
+Cordoba,Cordoba,capital,37.8882,-4.7794,326000,
+Cuenca,Cuenca,capital,40.0704,-2.1374,54000,
+Girona,Girona,capital,41.9794,2.8214,103000,
+Granada,Granada,capital,37.1773,-3.5986,232000,
+Guadalajara,Guadalajara,capital,40.6333,-3.1669,88000,
+San Sebastian,Guipuzcoa,capital,43.3183,-1.9812,188000,
+Huelva,Huelva,capital,37.2614,-6.9447,143000,
+Huesca,Huesca,capital,42.1401,-0.4089,53000,
+Jaen,Jaen,capital,37.7796,-3.7849,109000,
+Logrono,La Rioja,capital,42.4627,-2.4449,151000,
+Leon,Leon,capital,42.5987,-5.5671,121000,
+Lleida,Lleida,capital,41.6176,0.62,140000,
+Lugo,Lugo,capital,43.0121,-7.5559,98000,
+Madrid,Madrid,capital,40.4168,-3.7038,3223000,
+Malaga,Malaga,capital,36.7213,-4.4214,578000,
+Murcia,Murcia,capital,37.9922,-1.1307,460000,
+Pamplona,Navarra,capital,42.8125,-1.6458,203000,
+Ourense,Ourense,capital,42.3358,-7.8639,104000,
+Palencia,Palencia,capital,42.0095,-4.5279,78000,
+Pontevedra,Pontevedra,capital,42.431,-8.6444,83000,
+Salamanca,Salamanca,capital,40.9701,-5.6635,144000,
+Segovia,Segovia,capital,40.9429,-4.1088,51000,
+Sevilla,Sevilla,capital,37.3891,-5.9845,684000,
+Soria,Soria,capital,41.7665,-2.479,39000,
+Tarragona,Tarragona,capital,41.1189,1.2445,135000,
+Teruel,Teruel,capital,40.3456,-1.1065,35000,
+Toledo,Toledo,capital,39.8628,-4.0273,86000,
+Valencia,Valencia,capital,39.4699,-0.3763,791000,
+Valladolid,Valladolid,capital,41.6523,-4.7245,298000,
+Bilbao,Vizcaya,capital,43.263,-2.935,346000,
+Zamora,Zamora,capital,41.5033,-5.7446,60000,
+Zaragoza,Zaragoza,capital,41.6488,-0.8891,675000,
+Ceuta,Ceuta,capital,35.8894,-5.3213,84000,
+Melilla,Melilla,capital,35.2923,-2.9381,86000,
+Vigo,Pontevedra,extra,42.2406,-8.7207,295000,largest non-capital city in Spain
+Gijon,Asturias,extra,43.5453,-5.6615,271000,largest non-capital in Asturias
+Santiago de Compostela,A Coruna,extra,42.8782,-8.5448,98000,Galician interior climate
+Ferrol,A Coruna,extra,43.4831,-8.233,65000,Atlantic coast Galicia
+Cartagena,Murcia,extra,37.6051,-0.9862,215000,SE Mediterranean coast
+Jerez de la Frontera,Cadiz,extra,36.685,-6.1261,212000,Atlantic Andalusia
+Algeciras,Cadiz,extra,36.1408,-5.4536,123000,Strait of Gibraltar
+Tarifa,Cadiz,extra,36.0128,-5.606,18000,southernmost mainland point - strong wind/Atlantic-Mediterranean influence
+Elche,Alicante,extra,38.2622,-0.6973,235000,SE Mediterranean coast
+Marbella,Malaga,extra,36.5101,-4.8825,151000,Costa del Sol microclimate

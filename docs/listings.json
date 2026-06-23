@@ -2,6 +2,7 @@
   {
     "listing": "/about/index.html",
     "items": [
+      "/blog/spain-temperature-normals-openmeteo/index.html",
       "/blog/map-projections/index.html",
       "/blog/canary-gam-downscaling/index.html",
       "/blog/hex-map-buuse/index.html",
@@ -34,6 +35,7 @@
   {
     "listing": "/blog/index.html",
     "items": [
+      "/blog/spain-temperature-normals-openmeteo/index.html",
       "/blog/map-projections/index.html",
       "/blog/canary-gam-downscaling/index.html",
       "/blog/hex-map-buuse/index.html",
