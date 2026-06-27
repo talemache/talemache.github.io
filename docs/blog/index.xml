@@ -75,7 +75,11 @@
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ggh4x</td>
-<td style="text-align: left;">Extra ggplot2 helpers</td>
+<td style="text-align: left;">Extra ggplot2 helpers, including <code><a href="https://teunbrand.github.io/ggh4x/reference/stat_difference.html">stat_difference()</a></code> for correctly interpolated fill areas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ggnewscale</td>
+<td style="text-align: left;">Multiple fill/colour scales in a single ggplot2 chart</td>
 </tr>
 </tbody>
 </table>
@@ -330,6 +334,33 @@ background-color: null;
 font-style: inherit;">"ggh4x"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span></span>
+<span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"><a href="https://eliocamp.github.io/ggnewscale/">"ggnewscale"</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ggnewscale"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
 <span></span>
 <span><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -419,6 +450,16 @@ background-color: null;
 font-style: inherit;">(</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;"><a href="https://github.com/teunbrand/ggh4x">ggh4x</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://eliocamp.github.io/ggnewscale/">ggnewscale</a></span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
@@ -1952,7 +1993,7 @@ font-style: inherit;">"Day of year"</span>, y <span class="op" style="color: #5E
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"�C"</span>, title <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"ºC"</span>, title <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -2678,7 +2719,7 @@ font-style: inherit;">"Number of harmonics (K)"</span>, y <span class="op" style
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"5-fold CV RMSE (�C)"</span>,</span>
+font-style: inherit;">"5-fold CV RMSE (ºC)"</span>,</span>
 <span>       title <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
@@ -3295,7 +3336,7 @@ font-style: inherit;">"span (fraction of the year per local window)"</span>, y <
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"5-fold CV RMSE (�C)"</span>,</span>
+font-style: inherit;">"5-fold CV RMSE (ºC)"</span>,</span>
 <span>       title <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
@@ -3709,7 +3750,7 @@ font-style: inherit;">NULL</span>, y <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"�C"</span>, title <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"ºC"</span>, title <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -5019,7 +5060,7 @@ font-style: inherit;">NULL</span>, y <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"�C"</span>, title <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"ºC"</span>, title <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -5565,7 +5606,7 @@ font-style: inherit;">NULL</span>, y <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"�C"</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">"ºC"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -5689,7 +5730,8 @@ font-style: inherit;">p</span></span></code></pre></div></div>
 </div>
 </div></div></div>
 </section><section id="the-reference-range-and-the-anomaly" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="the-reference-range-and-the-anomaly">2. The reference range and the anomaly</h3>
-<p>This is the layer that does the actual work of the chart. Two dashed lines, drawn with <code><a href="https://allancameron.github.io/geomtextpath/reference/geom_textpath.html">geomtextpath::geom_textline()</a></code> so the “P5”/“P95” labels sit directly on the lines instead of needing a separate legend, mark the smoothed typical range. Then two ribbons fill the gap between this year’s value and the normal: red where today is <em>above</em> normal, blue where it’s <em>below</em>. The trick is the same for both, take a copy of <code>final</code> where, for the “wrong-sign” days, <code>tmed</code> is replaced by <code>smooth</code> itself, so the ribbon collapses to zero width on those days and only shows colour where it should:</p>
+<p>This is the layer that does the actual work of the chart. Two dashed lines, drawn with <code><a href="https://allancameron.github.io/geomtextpath/reference/geom_textpath.html">geomtextpath::geom_textline()</a></code> so the “P5”/“P95” labels sit directly on the lines instead of needing a separate legend, mark the smoothed typical range. Then <code><a href="https://teunbrand.github.io/ggh4x/reference/stat_difference.html">ggh4x::stat_difference()</a></code> fills the gap between this year’s temperature and the normal: salmon where today is <em>above</em> normal, light blue where it’s <em>below</em>. The key advantage over a plain <code>geom_ribbon</code> is that <code><a href="https://teunbrand.github.io/ggh4x/reference/stat_difference.html">stat_difference()</a></code> interpolates the exact crossing point when the two lines switch sides, so the coloured area always closes cleanly at the zero line without leaving visual artefacts.</p>
+<p>The same logic is then repeated for the <em>extreme</em> zones, with <code><a href="https://eliocamp.github.io/ggnewscale/reference/new_scale.html">ggnewscale::new_scale_fill()</a></code> resetting the colour mapping so the two layers can use independent <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code> calls. The reference line for the hot extreme is <code>p95_smooth</code> (anything above it gets dark red); for the cold extreme it is <code>p5_smooth</code> (anything below it gets dark blue). Setting the “wrong-side” level to <code>NA</code> in <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code> makes those half-ribbons fully transparent, so only the genuine extreme areas are coloured:</p>
 <div class="cell page-columns page-full">
 <details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
 background-color: null;
@@ -5800,7 +5842,7 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span>  <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Base anomaly: above smooth = red, below smooth = blue</span></span>
+font-style: inherit;"># Base anomaly: above smooth = salmon, below smooth = light blue</span></span>
 <span>  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://teunbrand.github.io/ggh4x/reference/stat_difference.html">stat_difference</a></span><span class="op" style="color: #5E5E5E;
@@ -5852,9 +5894,9 @@ font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span 
 background-color: null;
 font-style: inherit;">(</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"#d6604d"</span>, <span class="st" style="color: #20794D;
+font-style: inherit;">"#f4a582"</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"#4393c3"</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">"#92c5de"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span>, guide <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -5865,23 +5907,35 @@ background-color: null;
 font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span>  <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Extreme zones on top</span></span>
 <span>  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op" style="color: #5E5E5E;
+font-style: inherit;"><a href="https://eliocamp.github.io/ggnewscale/reference/new_scale.html">new_scale_fill</a></span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">(</span>data <span class="op" style="color: #5E5E5E;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extreme hot: above P95 (positive diff only; negative → transparent)</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://teunbrand.github.io/ggh4x/reference/stat_difference.html">stat_difference</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    data <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">final</span>,</span>
-<span>              <span class="fu" style="color: #4758AB;
+<span>    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
+font-style: inherit;">(</span>x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">date</span>, ymin <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -5889,75 +5943,131 @@ font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">p95_smooth</span>, ymax <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/Extremes.html">pmax</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">p95_smooth</span>, <span class="va" style="color: #111111;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">tmed</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">)</span>,</span>
+<span>    levels <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"above_p95"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"below_p95"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span>,</span>
-<span>              fill <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#b2182b"</span>, alpha <span class="op" style="color: #5E5E5E;
+<span>    alpha <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">.90</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">0.90</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
+<span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extreme cold: below P5 (positive diff only; negative → transparent)</span></span>
 <span>  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op" style="color: #5E5E5E;
+font-style: inherit;"><a href="https://teunbrand.github.io/ggh4x/reference/stat_difference.html">stat_difference</a></span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">(</span>data <span class="op" style="color: #5E5E5E;
+font-style: inherit;">(</span></span>
+<span>    data <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">final</span>,</span>
-<span>              <span class="fu" style="color: #4758AB;
+<span>    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
+font-style: inherit;">(</span>x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">date</span>, ymin <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;"><a href="https://rdrr.io/r/base/Extremes.html">pmin</a></span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">(</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">p5_smooth</span>, <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">tmed</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">)</span>, ymax <span class="op" style="color: #5E5E5E;
+font-style: inherit;">tmed</span>, ymax <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">p5_smooth</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span>,</span>
-<span>              fill <span class="op" style="color: #5E5E5E;
+<span>    levels <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">"#2166ac"</span>, alpha <span class="op" style="color: #5E5E5E;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"below_p5"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"above_p5"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    alpha <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">.90</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">0.90</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    values <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>above_p95 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#b2182b"</span>, below_p95 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>,</span>
+<span>               below_p5  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#2166ac"</span>, above_p5  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    na.value <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>,</span>
+<span>    guide   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span></span>
 <span></span>
@@ -6372,7 +6482,7 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 1      1.83             97             0</code></pre>
 </div>
 </div>
-<p>2025 was, on average, about 1.8�C warmer than the 1961-1990 normal across these 60 cities. Nearly a hundred days, more than a quarter of the year, were above the P95 threshold, concentrated in the warm season, while not a single day dropped below P5. That asymmetry is itself part of the story: against an older, fixed baseline, “normal cold” has essentially stopped happening.</p>
+<p>2025 was, on average, about 1.8ºC warmer than the 1961-1990 normal across these 60 cities. Nearly a hundred days, more than a quarter of the year, were above the P95 threshold, concentrated in the warm season, while not a single day dropped below P5. That asymmetry is itself part of the story: against an older, fixed baseline, “normal cold” has essentially stopped happening.</p>
 </section></section><section id="final-thoughts" class="level2"><h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
 <p>The two issues in this post are connected by the same idea: <strong>a chart that looks “clean” is not the same as a chart that is <em>correct</em>.</strong> A perfectly smooth sine-wave normal looks more “finished” than a slightly wiggly one, but it actively misrepresents the seasonal cycle of a place like Spain. Cross-validation doesn’t just pick a number for us, it gives us a way to <em>show our work</em> and to defend (or revise) that number when the data, the variable, or the region changes.</p>
 
