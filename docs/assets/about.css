@@ -51,6 +51,105 @@
   }
 }
 
+/* ── Activities: cards ─────────────────────────────────────── */
+
+.activities-grid {
+  gap: 1.5rem;
+}
+
+.activity-card {
+  background-color: var(--spc-bg-1, #f8f9fa);
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  height: 100%;
+}
+
+.activity-card-header {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--bs-primary, #4a7c59);
+}
+
+/* ── Timeline ──────────────────────────────────────────────── */
+
+.timeline {
+  position: relative;
+  padding-left: 1rem;
+  border-left: 2px solid var(--bs-border-color, #dee2e6);
+}
+
+.tl-year {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color, #6c757d);
+  margin: 1rem 0 0.5rem -1.6rem;
+  padding-left: 0.9rem;
+  position: relative;
+}
+
+.tl-year::before {
+  content: "";
+  position: absolute;
+  left: -0.45rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--bs-primary, #4a7c59);
+}
+
+.tl-item {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 0.45rem 0 0.45rem 0;
+  border-bottom: 1px solid var(--bs-border-color, #dee2e6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.tl-item:last-child {
+  border-bottom: none;
+}
+
+.tl-date {
+  font-size: 0.75rem;
+  color: var(--bs-secondary-color, #6c757d);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* ── Activity badges ───────────────────────────────────────── */
+
+.act-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.15em 0.55em;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-invited  { background: #e8f4ea; color: #2d6a4f; }
+.badge-phd      { background: #e3f0fb; color: #1a5276; }
+.badge-conference { background: #fdf3e3; color: #935116; }
+.badge-seminar  { background: #f4ecf7; color: #6c3483; }
+.badge-course   { background: #fef9e7; color: #9a7d0a; }
+.badge-project  { background: #eafaf1; color: #1e8449; }
+
+/* ── Mobile ────────────────────────────────────────────────── */
+
 /* mobile query up for screens up to ~576px wide */
 @media screen and (max-width: 576px) {
 
