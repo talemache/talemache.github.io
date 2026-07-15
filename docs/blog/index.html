@@ -2,27 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Blog - Ryan Levels</title>
   <meta name="description" content="Personal blog posts by Ryan Levels.">
   <meta name="twitter:title" content="Blog">
   <meta name="twitter:description" content="Personal blog posts by Ryan Levels.">
+  <link href="../assets/img/splash-screen.jpg" rel="icon" type="image/jpeg">
+  <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
   <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="../site_libs/bootstrap/bootstrap-29096cc9eda4322cbeb1bfaab3028d7e.min.css" rel="stylesheet">
+  <link href="../site_libs/bootstrap/bootstrap-f48f491e060106015f06dcadaff29a9b.min.css" rel="stylesheet">
+  <style>
+    .navbar-brand-logo .navbar-logo {
+      width: 2.15rem;
+      height: 2.15rem;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 575.98px) {
+      .navbar-brand-logo .navbar-logo {
+        width: 1.9rem;
+        height: 1.9rem;
+      }
+    }
+  </style>
 </head>
-<body>
-  <header class="container py-4">
-    <nav class="d-flex gap-3">
-      <a href="../index.html">Home</a>
-      <a href="../about/index.html">About</a>
-      <a href="../blog/index.html" aria-current="page">Blog</a>
-      <a href="../project/index.html">Projects</a>
-      <a href="../contact.html">Contact</a>
+<body class="nav-fixed quarto-light">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+        <div class="navbar-brand-container mx-auto">
+          <a href="../index.html" class="navbar-brand navbar-brand-logo">
+            <img src="../assets/img/splash-screen.jpg" alt="" class="navbar-logo light-content">
+            <img src="../assets/img/splash-screen.jpg" alt="" class="navbar-logo dark-content">
+          </a>
+          <a class="navbar-brand" href="../index.html">
+            <span class="navbar-title">Ryan Levels</span>
+          </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <li class="nav-item"><a class="nav-link" href="../about/index.html"><span class="menu-text">About</span></a></li>
+            <li class="nav-item"><a class="nav-link active" href="../blog/index.html" aria-current="page"><span class="menu-text">Blog</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="../project/index.html"><span class="menu-text">Projects</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="../contact.html"><span class="menu-text">Contact</span></a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 
-  <main class="container pb-5">
-    <h1 class="mb-3">Blog</h1>
+  <main class="container" style="padding-top: 7rem; padding-bottom: 3rem; max-width: 900px;">
+    <h1>Blog</h1>
     <p class="text-muted">No posts published yet.</p>
   </main>
 </body>

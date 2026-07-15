@@ -19,9 +19,28 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
+<style>
+.navbar-brand-logo .navbar-logo {
+  width: 2.15rem;
+  height: 2.15rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 575.98px) {
+  .navbar-brand-logo .navbar-logo {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+}
+</style>
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../assets/img/favicon.svg" rel="icon" type="image/svg+xml">
+<link href="../assets/img/splash-screen.jpg" rel="icon" type="image/jpeg">
 <script src="../site_libs/quarto-listing/list.min.js"></script>
 <script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -144,7 +163,7 @@ window.Quarto = {
 </script>
 <meta name="twitter:title" content="Ryan Levels">
 <meta name="twitter:description" content="Data and Evaluation Manager | Analytics and Software Engineering">
-<meta name="twitter:image" content="https://dominicroye.github.io/about/sidebar/avatar.jpg">
+<meta name="twitter:image" content="https://dominicroye.github.io/about/me.png">
 <meta name="twitter:creator" content="@drxeo.eu">
 <meta name="twitter:site" content="@drxeo.eu">
 <meta name="twitter:card" content="summary_large_image">
@@ -155,7 +174,7 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../assets/img/logo.svg" alt="" class="navbar-logo light-content"><img src="../assets/img/logo.svg" alt="" class="navbar-logo dark-content"></a>
+    <img src="../assets/img/splash-screen.jpg" alt="" class="navbar-logo light-content"><img src="../assets/img/splash-screen.jpg" alt="" class="navbar-logo dark-content"></a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Ryan Levels</span>
     </a>
@@ -174,16 +193,12 @@ window.Quarto = {
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../publication/index.html"> 
-<span class="menu-text">Publications</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../bioclim/index.html"> 
-<span class="menu-text">Bioclim</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../project/index.html"> 
-<span class="menu-text">Data Viz</span></a>
+  <span class="menu-text">Projects</span></a>
+    </li>  
+    <li class="nav-item">
+      <a class="nav-link" href="../contact.html"> 
+  <span class="menu-text">Contact</span></a>
   </li>  
 </ul>
 </div> <!-- /navcollapse -->
@@ -197,8 +212,8 @@ window.Quarto = {
 <!-- main -->
 <main class="content column-page" id="quarto-document-content"><div class="quarto-about-trestles column-page">
   <div class="about-entity">
-    <img src="sidebar/avatar.jpg" class="about-image
-  round " style="height: 14em; width: 14em;">
+    <img src="me.png" class="about-image
+  round " style="height: 14em; width: 14em; object-fit: cover; border: 4px solid rgba(255, 255, 255, 0.9); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);">
 <header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Ryan Levels</h1>
 <p class="subtitle lead">Data and Evaluation Manager<br>Analytics and Software Engineering</p>
